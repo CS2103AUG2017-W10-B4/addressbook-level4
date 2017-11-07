@@ -21,14 +21,16 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
+
+    /** Returns a view of the filtered list of groups */
+    ObservableList<Group> getFilteredGroupList();
+
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<ReadOnlyPerson> getFilteredPersonList();
 
     /** Returns a view of the filtered list of events */
     ObservableList<Event> getFilteredEventList();
 
-    /** Returns a view of the filtered list of groups */
-    ObservableList<Group> getFilteredGroupList();
 
     /** Returns the list of input entered by the user, encapsulated in a {@code ListElementPointer} object */
     ListElementPointer getHistorySnapshot();

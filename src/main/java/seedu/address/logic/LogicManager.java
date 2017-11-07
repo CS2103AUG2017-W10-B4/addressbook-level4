@@ -52,6 +52,9 @@ public class LogicManager extends ComponentManager implements Logic {
         return model.getFilteredPersonList();
     }
 
+    public ObservableList<Group> getFilteredGroupList() {
+        return model.getFilteredGroupList();
+    }
     @Override
     public ListElementPointer getHistorySnapshot() {
         return new ListElementPointer(history.getHistory());
@@ -62,9 +65,7 @@ public class LogicManager extends ComponentManager implements Logic {
         return model.getFilteredEventList();
     }
 
-    public ObservableList<Group> getFilteredGroupList() {
-        return model.getFilteredGroupList();
-    }
+
 
 
 }

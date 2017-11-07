@@ -11,8 +11,9 @@ import seedu.address.model.group.Group;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.group.DuplicateGroupException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-
+import java.text.ParseException;
 import java.util.function.Predicate;
+
 
 
 /**
@@ -28,17 +29,17 @@ public interface Model {
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
+    void addGroup(Group group) throws DuplicateGroupException,IllegalValueException;
 
+    /** Adds the given person */
+    void addEvent(Event event) throws DuplicateEventException;
     /** Deletes the given person. */
     void deletePerson(ReadOnlyPerson target) throws PersonNotFoundException;
 
     /** Adds the given person */
     void addPerson(ReadOnlyPerson person) throws DuplicatePersonException;
 
-    void addGroup(Group group) throws DuplicateGroupException,IllegalValueException;
 
-    /** Adds the given person */
-    void addEvent(Event event) throws DuplicateEventException;
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
