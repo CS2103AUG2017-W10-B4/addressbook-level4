@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Dao Quoc Cuong - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Dao Quoc Cuong - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-neoxpro-manager"><a class="link" href="#project-neoxpro-manager">Project: NeoXPro Manager</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>NeoXPro 4 is a desktop address book application extends from an existing stock application which was used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 7 kLoC.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/main/erik0704.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/test/erik0704.md">Test code</a>]</p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-find-a-person-via-the-contact-tags"><a class="link" href="#enhancement-added-find-a-person-via-the-contact-tags">Enhancement Added: Find a person via the contact tags</a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="locating-persons-by-tags-code-findtag-code-since-v1-1"><a class="link" href="#locating-persons-by-tags-code-findtag-code-since-v1-1">Locating persons by tags: <code>findTag</code> (since v1.1)</a></h3>
+<div class="paragraph">
+<p>Finds persons whose tags include all of the given keywords.<br>
+Format: <code>findTag KEYWORD [MORE_KEYWORDS]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>cs2103t</code> will match <code>CS2103T</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter.</p>
+</li>
+<li>
+<p>Only the tag is searched.</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>cs210</code> will not match <code>cs2101</code></p>
+</li>
+<li>
+<p>Only persons matching at all keywords will be returned (i.e. <code>AND</code> search). e.g. e.g. <code>friend cs2103t</code> will match all
+contacts that have both <code>friend</code> and <code>cs2103t</code> tags</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>findTag friend</code><br>
+Returns any person with a <code>friend</code> tag</p>
+</li>
+<li>
+<p><code>findTag CS2103T friend</code><br>
+Returns all persons with both <code>friend</code> and <code>CS2103T</code> tag.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>The address book had tags for each contact, however there was no way to search for contact with certain tags.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-locate-a-person"><a class="link" href="#enhancement-added-locate-a-person">Enhancement Added: Locate a person</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="locating-a-person-s-address-code-locate-code-since-v1-3"><a class="link" href="#locating-a-person-s-address-code-locate-code-since-v1-3">Locating a person&#8217;s address : <code>locate</code> (since v1.3)</a></h3>
+<div class="paragraph">
+<p>Locate the person&#8217;s address identified by the index number used in the last person listing.<br>
+Format: <code>locate INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Loads the Google map page of the person&#8217;s address at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>locate 2</code><br>
+Locates the 2nd person&#8217;s address in the address book.</p>
+</li>
+<li>
+<p><code>find Betsy</code><br>
+<code>locate 1</code><br>
+Locates the 1st person in the results of the <code>find</code> command.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>May help the user finding the contact address quickly and perhaps direction if the user want to go there.
+Implementation</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<div class="paragraph">
+<p>Similar to select command but load a google map page instead.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-event-functionality"><a class="link" href="#enhancement-added-event-functionality">Enhancement Added: Event functionality</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-3"><a class="link" href="#external-behavior-3">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-an-event-code-addevent-code-since-v1-2"><a class="link" href="#adding-an-event-code-addevent-code-since-v1-2">Adding an event: <code>addEvent</code> (since v1.2)</a></h3>
+<div class="paragraph">
+<p>Adds a person to the address book<br>
+Format: <code>addEvent n/EVENT_NAME d/DD-MM-YY de/[EXTRA]</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The event extra description is optional, can use as a to-do list.<br>
+The event date is <code>yyyy-mm-dd</code> format.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addEvent n/Return 5$ d/2017-08-17 de/lunch money</code><br>
+Add a new event with description.</p>
+</li>
+<li>
+<p><code>addEvent n/Project Meeting d/2017-11-25 de/</code><br>
+Add a new event with empty description.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-an-event-code-deleteevent-code-since-v1-4"><a class="link" href="#deleting-an-event-code-deleteevent-code-since-v1-4">Deleting an event : <code>deleteEvent</code> (since v1.4)</a></h3>
+<div class="paragraph">
+<p>Deletes the specified event from the address book.<br>
+Format: <code>deleteEvent INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the event at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deleteEvent 2</code><br>
+Deletes the 2nd listed event in the address book.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="auto-reminder-since-v1-5"><a class="link" href="#auto-reminder-since-v1-5">Auto-reminder (since v1.5)</a></h3>
+<div class="paragraph">
+<p>NeoXPro Manager will remind the user events occur on the day when when starting the application.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
+<div class="paragraph">
+<p>The application is also meant to be a task manager. Thus there is a need to implement task functionality.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<div class="paragraph">
+<p>Overall behavior is similar to Person class logic and model.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Modify add command to accept partial string.</p>
+</li>
+<li>
+<p>Updated the GUI part to display events.</p>
+</li>
+<li>
+<p>Managed the team repository as team lead.</p>
+</li>
+<li>
+<p>Checked pull requests code quality. Resolved conflict and fix bugs from pull requests codes of other members.</p>
+</li>
+<li>
+<p>Fixed all checkstyle errors of every team member.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-11-11 14:38:16 +00:00
+</div>
+</div>
+</body>
+</html>

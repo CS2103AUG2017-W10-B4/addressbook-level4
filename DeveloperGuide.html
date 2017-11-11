@@ -5,70 +5,81 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3">
-<title>AddressBook Level 4 - Developer Guide</title>
+<title>NeoXPro Manager - Developer Guide</title>
 <link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css">
 </head>
 <body class="article">
 <div id="header">
-<h1>AddressBook Level 4 - Developer Guide</h1>
+<h1>NeoXPro Manager - Developer Guide</h1>
 </div>
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
+<p>By: <code>Team W10-B4</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#setting-up">1. Setting up</a>
+<li><a href="#introduction">1. Introduction</a>
 <ul class="sectlevel2">
-<li><a href="#prerequisites">1.1. Prerequisites</a></li>
-<li><a href="#setting-up-the-project-in-your-computer">1.2. Setting up the project in your computer</a></li>
-<li><a href="#verifying-the-setup">1.3. Verifying the setup</a></li>
-<li><a href="#configurations-to-do-before-writing-code">1.4. Configurations to do before writing code</a></li>
+<li><a href="#software-information">1.1. Software Information</a></li>
+<li><a href="#purpose-of-developer-guide">1.2. Purpose of Developer Guide</a></li>
+<li><a href="#content-preview">1.3. Content Preview</a></li>
 </ul>
 </li>
-<li><a href="#design">2. Design</a>
+<li><a href="#setting-up">2. Setting up</a>
 <ul class="sectlevel2">
-<li><a href="#architecture">2.1. Architecture</a></li>
-<li><a href="#ui-component">2.2. UI component</a></li>
-<li><a href="#logic-component">2.3. Logic component</a></li>
-<li><a href="#model-component">2.4. Model component</a></li>
-<li><a href="#storage-component">2.5. Storage component</a></li>
-<li><a href="#common-classes">2.6. Common classes</a></li>
+<li><a href="#prerequisites">2.1. Prerequisites</a></li>
+<li><a href="#setting-up-the-project-in-your-computer">2.2. Setting up the project in your computer</a></li>
+<li><a href="#verifying-the-setup">2.3. Verifying the setup</a></li>
+<li><a href="#configurations-to-do-before-writing-code">2.4. Configurations to do before writing code</a></li>
 </ul>
 </li>
-<li><a href="#implementation">3. Implementation</a>
+<li><a href="#design">3. Design</a>
 <ul class="sectlevel2">
-<li><a href="#undo-redo-mechanism">3.1. Undo/Redo mechanism</a></li>
-<li><a href="#logging">3.2. Logging</a></li>
-<li><a href="#configuration">3.3. Configuration</a></li>
+<li><a href="#architecture">3.1. Architecture</a></li>
+<li><a href="#ui-component">3.2. UI component</a></li>
+<li><a href="#logic-component">3.3. Logic component</a></li>
+<li><a href="#model-component">3.4. Model component</a></li>
+<li><a href="#storage-component">3.5. Storage component</a></li>
+<li><a href="#common-classes">3.6. Common classes</a></li>
 </ul>
 </li>
-<li><a href="#documentation">4. Documentation</a>
+<li><a href="#implementation">4. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#editing-documentation">4.1. Editing Documentation</a></li>
-<li><a href="#publishing-documentation">4.2. Publishing Documentation</a></li>
-<li><a href="#converting-documentation-to-pdf-format">4.3. Converting Documentation to PDF format</a></li>
+<li><a href="#undo-redo-mechanism">4.1. Undo/Redo mechanism</a></li>
+<li><a href="#adding-a-parameter-in-add-command">4.2. Adding a Parameter in Add Command</a></li>
+<li><a href="#logging">4.3. Logging</a></li>
+<li><a href="#deletelist-deletes-a-list-of-persons-with-specified-indices">4.4. deleteList: deletes a list of persons with specified indices</a></li>
+<li><a href="#findtag-command">4.5. FindTag Command</a></li>
+<li><a href="#coming-birthday-list">4.6. Coming Birthday List</a></li>
+<li><a href="#configuration">4.7. Configuration</a></li>
 </ul>
 </li>
-<li><a href="#testing">5. Testing</a>
+<li><a href="#documentation">5. Documentation</a>
 <ul class="sectlevel2">
-<li><a href="#running-tests">5.1. Running Tests</a></li>
-<li><a href="#types-of-tests">5.2. Types of tests</a></li>
-<li><a href="#troubleshooting-testing">5.3. Troubleshooting Testing</a></li>
+<li><a href="#editing-documentation">5.1. Editing Documentation</a></li>
+<li><a href="#publishing-documentation">5.2. Publishing Documentation</a></li>
+<li><a href="#converting-documentation-to-pdf-format">5.3. Converting Documentation to PDF format</a></li>
 </ul>
 </li>
-<li><a href="#dev-ops">6. Dev Ops</a>
+<li><a href="#testing">6. Testing</a>
 <ul class="sectlevel2">
-<li><a href="#build-automation">6.1. Build Automation</a></li>
-<li><a href="#continuous-integration">6.2. Continuous Integration</a></li>
-<li><a href="#making-a-release">6.3. Making a Release</a></li>
-<li><a href="#managing-dependencies">6.4. Managing Dependencies</a></li>
+<li><a href="#running-tests">6.1. Running Tests</a></li>
+<li><a href="#types-of-tests">6.2. Types of tests</a></li>
+<li><a href="#troubleshooting-testing">6.3. Troubleshooting Testing</a></li>
+</ul>
+</li>
+<li><a href="#dev-ops">7. Dev Ops</a>
+<ul class="sectlevel2">
+<li><a href="#build-automation">7.1. Build Automation</a></li>
+<li><a href="#continuous-integration">7.2. Continuous Integration</a></li>
+<li><a href="#making-a-release">7.3. Making a Release</a></li>
+<li><a href="#managing-dependencies">7.4. Managing Dependencies</a></li>
 </ul>
 </li>
 <li><a href="#suggested-programming-tasks-to-get-started">Appendix A: Suggested Programming Tasks to Get Started</a>
@@ -86,10 +97,42 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="setting-up"><a class="link" href="#setting-up">1. Setting up</a></h2>
+<h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="prerequisites"><a class="link" href="#prerequisites">1.1. Prerequisites</a></h3>
+<h3 id="software-information"><a class="link" href="#software-information">1.1. Software Information</a></h3>
+<div class="paragraph">
+<p>NeoXPro is a command line interface(CLI) address book. NeoXPro not only allows users to keep track of the personal
+information of their friends and acquaintances, it helps users to manage their everyday tasks too. The software consists
+of four components: UI, Logic, Model, Storage. The language used in implementing this software is JAVA.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="purpose-of-developer-guide"><a class="link" href="#purpose-of-developer-guide">1.2. Purpose of Developer Guide</a></h3>
+<div class="paragraph">
+<p>Do not worry if you have no idea about how to start. This developer guide will help new team members like you to understand
+how NeoXPro works. You will definitely find clues about how to contribute to NeoXPro after thorough reading of this document.
+You can always refer to this document if you have any doubts when implementing new features to NeoXPro.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="content-preview"><a class="link" href="#content-preview">1.3. Content Preview</a></h3>
+<div class="paragraph">
+<p>This developer guide will first bring you through the design and internal structure of NeoXPro. You will be able to understand
+the how four components are linked and inter-related. There will be explanation on the enhancements implemented too. You can
+study on those implemented features and at the same time, try to understand the logic behind every implementation. This will
+help when you are implementing your own new features. After implementing, you will need to update relevant documentations and
+running various tests to check that your codes work fine. The documentation and testing section will guide you through those
+processes. Read this document now to understand the best address book, NeoXPro.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-up"><a class="link" href="#setting-up">2. Setting up</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="prerequisites"><a class="link" href="#prerequisites">2.1. Prerequisites</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -128,7 +171,7 @@ Do not disable them. If you have disabled them, go to <code>File</code> &gt; <co
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-up-the-project-in-your-computer"><a class="link" href="#setting-up-the-project-in-your-computer">1.2. Setting up the project in your computer</a></h3>
+<h3 id="setting-up-the-project-in-your-computer"><a class="link" href="#setting-up-the-project-in-your-computer">2.2. Setting up the project in your computer</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -170,7 +213,7 @@ This will generate all resources required by the application and tests.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="verifying-the-setup"><a class="link" href="#verifying-the-setup">1.3. Verifying the setup</a></h3>
+<h3 id="verifying-the-setup"><a class="link" href="#verifying-the-setup">2.3. Verifying the setup</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -183,9 +226,9 @@ This will generate all resources required by the application and tests.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurations-to-do-before-writing-code"><a class="link" href="#configurations-to-do-before-writing-code">1.4. Configurations to do before writing code</a></h3>
+<h3 id="configurations-to-do-before-writing-code"><a class="link" href="#configurations-to-do-before-writing-code">2.4. Configurations to do before writing code</a></h3>
 <div class="sect3">
-<h4 id="configuring-the-coding-style"><a class="link" href="#configuring-the-coding-style">1.4.1. Configuring the coding style</a></h4>
+<h4 id="configuring-the-coding-style"><a class="link" href="#configuring-the-coding-style">2.4.1. Configuring the coding style</a></h4>
 <div class="paragraph">
 <p>This project follows <a href="https://github.com/oss-generic/process/blob/master/docs/CodingStandards.md">oss-generic coding standards</a>. IntelliJ&#8217;s default style is mostly compliant with ours but it uses a different import order from ours. To rectify,</p>
 </div>
@@ -217,13 +260,13 @@ This will generate all resources required by the application and tests.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="updating-documentation-to-match-your-fork"><a class="link" href="#updating-documentation-to-match-your-fork">1.4.2. Updating documentation to match your fork</a></h4>
+<h4 id="updating-documentation-to-match-your-fork"><a class="link" href="#updating-documentation-to-match-your-fork">2.4.2. Updating documentation to match your fork</a></h4>
 <div class="paragraph">
 <p>After forking the repo, links in the documentation will still point to the <code>se-edu/addressbook-level4</code> repo. If you plan to develop this as a separate product (i.e. instead of contributing to the <code>se-edu/addressbook-level4</code>) , you should replace the URL in the variable <code>repoURL</code> in <code>DeveloperGuide.adoc</code> and <code>UserGuide.adoc</code> with the URL of your fork.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="setting-up-ci"><a class="link" href="#setting-up-ci">1.4.3. Setting up CI</a></h4>
+<h4 id="setting-up-ci"><a class="link" href="#setting-up-ci">2.4.3. Setting up CI</a></h4>
 <div class="paragraph">
 <p>Set up Travis to perform Continuous Integration (CI) for your fork. See <a href="UsingTravis.html">UsingTravis.adoc</a> to learn how to set it up.</p>
 </div>
@@ -244,7 +287,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 </div>
 </div>
 <div class="sect3">
-<h4 id="getting-started-with-coding"><a class="link" href="#getting-started-with-coding">1.4.4. Getting started with coding</a></h4>
+<h4 id="getting-started-with-coding"><a class="link" href="#getting-started-with-coding">2.4.4. Getting started with coding</a></h4>
 <div class="paragraph">
 <p>When you are ready to start coding,</p>
 </div>
@@ -263,10 +306,10 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 </div>
 </div>
 <div class="sect1">
-<h2 id="design"><a class="link" href="#design">2. Design</a></h2>
+<h2 id="design"><a class="link" href="#design">3. Design</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="architecture"><a class="link" href="#architecture">2.1. Architecture</a></h3>
+<h3 id="architecture"><a class="link" href="#architecture">3.1. Architecture</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/Architecture.png" alt="Architecture" width="600">
@@ -411,7 +454,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="ui-component"><a class="link" href="#ui-component">2.2. UI component</a></h3>
+<h3 id="ui-component"><a class="link" href="#ui-component">3.2. UI component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
@@ -447,7 +490,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="logic-component"><a class="link" href="#logic-component">2.3. Logic component</a></h3>
+<h3 id="logic-component"><a class="link" href="#logic-component">3.3. Logic component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
@@ -497,7 +540,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="model-component"><a class="link" href="#model-component">2.4. Model component</a></h3>
+<h3 id="model-component"><a class="link" href="#model-component">3.4. Model component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800">
@@ -530,7 +573,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="storage-component"><a class="link" href="#storage-component">2.5. Storage component</a></h3>
+<h3 id="storage-component"><a class="link" href="#storage-component">3.5. Storage component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
@@ -557,7 +600,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="common-classes"><a class="link" href="#common-classes">2.6. Common classes</a></h3>
+<h3 id="common-classes"><a class="link" href="#common-classes">3.6. Common classes</a></h3>
 <div class="paragraph">
 <p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p>
 </div>
@@ -565,13 +608,13 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect1">
-<h2 id="implementation"><a class="link" href="#implementation">3. Implementation</a></h2>
+<h2 id="implementation"><a class="link" href="#implementation">4. Implementation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-mechanism"><a class="link" href="#undo-redo-mechanism">3.1. Undo/Redo mechanism</a></h3>
+<h3 id="undo-redo-mechanism"><a class="link" href="#undo-redo-mechanism">4.1. Undo/Redo mechanism</a></h3>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modifies the state of the address book (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
 </div>
@@ -723,7 +766,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.1. Design Considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">4.1.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>UndoableCommand</code><br>
 <strong>Alternative 1 (current choice):</strong> Add a new abstract method <code>executeUndoableCommand()</code><br>
@@ -767,7 +810,54 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.2. Logging</a></h3>
+<h3 id="adding-a-parameter-in-add-command"><a class="link" href="#adding-a-parameter-in-add-command">4.2. Adding a Parameter in Add Command</a></h3>
+<div class="sect3">
+<h4 id="add-birthday"><a class="link" href="#add-birthday">4.2.1. Add Birthday</a></h4>
+<div class="paragraph">
+<p>To add a new birthday in AddCommand, UI, Logic, Model and Storage components are to be modified accordingly.<br>
+Be aware of the inheritance between each component when implementing.
+Refer to Section 3 to observe the relationship between those components.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>UI Component:</code><br>
+PersonCard uses ReadOnlyPerson to create labels of each parameter. New parameter: Birthday, should be added to be included
+so that it can be shown in the information of person when showing person card in UI.</p>
+</li>
+<li>
+<p><code>Logic Component:</code><br>
+To include birthday parameter, several files in logic components should be modified accordingly. E.g. AddCommand, EditCommand,
+AddCommandParser, CliSyntax etc. Commands allows users to input the information, provides an interaction between user and the software.
+Parser is to parse the new parameter information, making sure that information is present before the real add command
+is created. Information being added should be parse to model to create persons if command format is correct.</p>
+</li>
+<li>
+<p><code>Model Component:</code><br>
+Create a new class for birthday so that it can be used under Person class. Person class uses ReadOnlyPerson interface.
+Person Class is to collect and set all information about a particular person. If all parameters is parsed correctly, a person with
+collected information will be created.<br>
+The following diagram shows the relationship of different classes in model component:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ModelClassForBirthday.png" alt="ModelClassForBirthday" width="300">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Storage Component:</code><br>
+To make sure that birthday can be stored in the xml format for future usage, xmlAdaptedPerson is used to save information of a person in xml format.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">4.3. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -805,7 +895,143 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">3.3. Configuration</a></h3>
+<h3 id="deletelist-deletes-a-list-of-persons-with-specified-indices"><a class="link" href="#deletelist-deletes-a-list-of-persons-with-specified-indices">4.4. deleteList: deletes a list of persons with specified indices</a></h3>
+<div class="paragraph">
+<p>'deleteList' command supports modifying the state of address book by deleting all persons whose indices are specified in the input. It inherits from 'UndoableCommand'.</p>
+</div>
+<div class="paragraph">
+<p>The implementation of 'deleteList' contains the logical part 'DeleteListCommand' and the parser 'DeleteListCommandParser'. They reside inside the package 'seedu.address.logic'.</p>
+</div>
+<div class="paragraph">
+<p>In 'DeleteListCommand', it stores the list of input indices in a list of 'Index' type: 'listTargetIndices'. 'listTargetIndices' is used later to retrieve all persons with specified indices and store them in 'listPersonsToDelete' (a list of 'ReadOnlyPerson' type). On execution, 'executeUndoableCommand()' will iterate through every person in 'listPersonsToDelete' and remove that person from address book.</p>
+</div>
+<div class="paragraph">
+<p>This 'DeleteListCommand' is implemented this way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">DeleteListCommand</span> <span class="directive">extends</span> UndoableCommand {
+
+   <span class="comment">// ...</span>
+
+    <span class="directive">private</span> <span class="directive">final</span> <span class="predefined-type">List</span>&lt;Index&gt; listTargetIndices;
+
+    <span class="directive">public</span> DeleteListCommand(<span class="predefined-type">List</span>&lt;Index&gt; listTargetIndices) {
+        <span class="local-variable">this</span>.listTargetIndices = listTargetIndices;
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> CommandResult executeUndoableCommand() <span class="directive">throws</span> CommandException {
+        <span class="comment">// ...</span>
+        <span class="predefined-type">List</span>&lt;ReadOnlyPerson&gt; listPersonsToDelete= <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;ReadOnlyPerson&gt;();
+        <span class="keyword">for</span>(Index targetIndex: listTargetIndices) {
+            ReadOnlyPerson personToDelete = lastShownList.get(targetIndex.getZeroBased());
+            listPersonsToDelete.add(personToDelete);
+        }
+        <span class="comment">// ... deleteList logic ...</span>
+     }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then its parser 'DeleteListCommandParser' is implemented to parse the input string from user into the input type 'List&lt;Index&gt; listTargetIndices' for 'DeleteListCommand' to read and execute.</p>
+</div>
+<div class="paragraph">
+<p>The parser is implemented  this way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">DeleteListCommandParser</span> <span class="directive">implements</span> <span class="predefined-type">Parser</span>&lt;DeleteListCommand&gt; {
+    <span class="directive">public</span> DeleteListCommand parse(<span class="predefined-type">String</span> args) <span class="directive">throws</span> <span class="exception">ParseException</span> {
+        <span class="keyword">try</span> {
+            <span class="predefined-type">List</span>&lt;Index&gt; input= <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;Index&gt;();
+            <span class="comment">// ... Parser logic ...</span>
+            <span class="keyword">return</span> <span class="keyword">new</span> DeleteListCommand(input);
+        } <span class="keyword">catch</span> (IllegalValueException ive) {
+            <span class="comment">// throw exception here</span>
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And finally, we teach the 'AddressBookParser' to read this new command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">AddressBookParser</span> {
+    <span class="comment">// ...</span>
+    <span class="directive">public</span> Command parseCommand(<span class="predefined-type">String</span> userInput) <span class="directive">throws</span> <span class="exception">ParseException</span> {
+        <span class="comment">// ... AddressBookParser logic ...</span>
+        <span class="directive">final</span> <span class="predefined-type">String</span> commandWord = matcher.group(<span class="string"><span class="delimiter">&quot;</span><span class="content">commandWord</span><span class="delimiter">&quot;</span></span>);
+        <span class="directive">final</span> <span class="predefined-type">String</span> arguments = matcher.group(<span class="string"><span class="delimiter">&quot;</span><span class="content">arguments</span><span class="delimiter">&quot;</span></span>);
+        <span class="keyword">switch</span> (commandWord) {
+        <span class="comment">// ... other commands ...</span>
+        <span class="keyword">case</span> DeleteListCommand.COMMAND_WORD:
+            <span class="keyword">return</span> <span class="keyword">new</span> DeleteListCommandParser().parse(arguments);
+        <span class="comment">// ... other commands ...</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Whenever 'deleteList INDEX[MORE_INDICES]' is invoked, the input data 'INDEX[MORE_INDICES]' is stored in 'arguments', which is then passed to 'DeleteListCommandParser'. The parser will then parse 'arguments' into appropriate input data for 'DeleteListCommand' to execute the logic. The final state of address book is updated at the end of this execution.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="findtag-command"><a class="link" href="#findtag-command">4.5. FindTag Command</a></h3>
+<div class="paragraph">
+<p>The findTag command utilize the same implementation as the Find command for name. Instead of logic execute search via Name attribute of Person, the command search for the TagList attribute.</p>
+</div>
+<div class="paragraph">
+<p>Name and Tag API structure is roughly similar that they allow to extract value of the object. The search algorithm utilize a class <code>TagContainsKeywordsPredicate implements Predicate&lt;ReadOnlyPerson&gt;</code>
+which allows the algorithm to use Java <code>Predicate</code> class method.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="coming-birthday-list"><a class="link" href="#coming-birthday-list">4.6. Coming Birthday List</a></h3>
+<div class="paragraph">
+<p>Basically, adding a list of upcoming birthday is only related to UI component. A new class should be implemented to hold the list.
+In this case, ComingBirthdayListPanel is implemented. ComingBirthdayListPanel should process all contacts in the person list
+and decide which persons to include in the coming birthday list.<br>
+To get the list of upcoming birthdays, the ComingBirthdayListPanel should have a method comingBirthdayListGetter
+which is implemented in this way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">---
+<span class="directive">private</span> ObservableList&lt;ReadOnlyPerson&gt; comingBirthdayListGetter(ObservableList&lt;ReadOnlyPerson&gt; personList) {
+        <span class="predefined-type">List</span>&lt;ReadOnlyPerson&gt; comingBirthdayList = personList.stream().collect(Collectors.toList());
+        <span class="type">boolean</span> isRemoved = <span class="predefined-constant">false</span>;
+        <span class="predefined-type">Calendar</span> cal = <span class="predefined-type">Calendar</span>.getInstance();
+        <span class="type">int</span> month = cal.get(<span class="predefined-type">Calendar</span>.MONTH)+<span class="integer">1</span>;
+        <span class="type">int</span> date = cal.get(<span class="predefined-type">Calendar</span>.DATE);
+        <span class="comment">//...</span>
+        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; comingBirthdayList.size(); i++) {
+            <span class="keyword">if</span> (!(<span class="predefined-type">Integer</span>.parseInt(comingBirthdayList.get(i).getBirthday().toString()
+                    .substring(<span class="integer">5</span>, <span class="integer">7</span>)) == month)) {
+                comingBirthdayList.remove(i);
+                isRemoved = <span class="predefined-constant">true</span>;
+            }
+            <span class="keyword">else</span> <span class="keyword">if</span>((<span class="predefined-type">Integer</span>.parseInt(comingBirthdayList.get(i).getBirthday().toString()
+                    .substring(<span class="integer">5</span>, <span class="integer">7</span>)) == month) &amp;&amp;
+                    <span class="predefined-type">Integer</span>.parseInt(comingBirthdayList.get(i).getBirthday().toString()
+                    .substring(<span class="integer">8</span>)) &lt; date) {
+                comingBirthdayList.remove(i);
+                isRemoved = <span class="predefined-constant">true</span>;
+            }
+            <span class="comment">//...</span>
+        }
+        <span class="keyword">return</span> FXCollections.observableArrayList(comingBirthdayList);
+}
+Main window should include the newly added ComingBirthdayListPanel <span class="type">class</span> <span class="class">so</span> that the panel will be shown in the main window.
+A fxml file, in <span class="local-variable">this</span> <span class="keyword">case</span> is ComingBirthdayListPanel.fxml <span class="keyword">for</span> coming birthday list should be present to reserve a section
+<span class="keyword">for</span> the list in the main window UI. MainWindow.fxml should modified accordingly to include the ComingBirthdayListPanel.fxml.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuration"><a class="link" href="#configuration">4.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -813,7 +1039,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect1">
-<h2 id="documentation"><a class="link" href="#documentation">4. Documentation</a></h2>
+<h2 id="documentation"><a class="link" href="#documentation">5. Documentation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>We use asciidoc for writing documentation.</p>
@@ -831,20 +1057,20 @@ We chose asciidoc over Markdown because asciidoc, although a bit more complex th
 </table>
 </div>
 <div class="sect2">
-<h3 id="editing-documentation"><a class="link" href="#editing-documentation">4.1. Editing Documentation</a></h3>
+<h3 id="editing-documentation"><a class="link" href="#editing-documentation">5.1. Editing Documentation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingGradle.html#rendering-asciidoc-files">UsingGradle.adoc</a> to learn how to render <code>.adoc</code> files locally to preview the end result of your edits.
 Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows you to preview the changes you have made to your <code>.adoc</code> files in real-time.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="publishing-documentation"><a class="link" href="#publishing-documentation">4.2. Publishing Documentation</a></h3>
+<h3 id="publishing-documentation"><a class="link" href="#publishing-documentation">5.2. Publishing Documentation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingTravis.html#deploying-github-pages">UsingTravis.adoc</a> to learn how to deploy GitHub Pages using Travis.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="converting-documentation-to-pdf-format"><a class="link" href="#converting-documentation-to-pdf-format">4.3. Converting Documentation to PDF format</a></h3>
+<h3 id="converting-documentation-to-pdf-format"><a class="link" href="#converting-documentation-to-pdf-format">5.3. Converting Documentation to PDF format</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://www.google.com/chrome/browser/desktop/">Google Chrome</a> for converting documentation to PDF format, as Chrome&#8217;s PDF engine preserves hyperlinks used in webpages.</p>
 </div>
@@ -879,10 +1105,10 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 </div>
 </div>
 <div class="sect1">
-<h2 id="testing"><a class="link" href="#testing">5. Testing</a></h2>
+<h2 id="testing"><a class="link" href="#testing">6. Testing</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="running-tests"><a class="link" href="#running-tests">5.1. Running Tests</a></h3>
+<h3 id="running-tests"><a class="link" href="#running-tests">6.1. Running Tests</a></h3>
 <div class="paragraph">
 <p>There are three ways to run tests.</p>
 </div>
@@ -944,7 +1170,7 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 </div>
 </div>
 <div class="sect2">
-<h3 id="types-of-tests"><a class="link" href="#types-of-tests">5.2. Types of tests</a></h3>
+<h3 id="types-of-tests"><a class="link" href="#types-of-tests">6.2. Types of tests</a></h3>
 <div class="paragraph">
 <p>We have two types of tests:</p>
 </div>
@@ -986,7 +1212,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="troubleshooting-testing"><a class="link" href="#troubleshooting-testing">5.3. Troubleshooting Testing</a></h3>
+<h3 id="troubleshooting-testing"><a class="link" href="#troubleshooting-testing">6.3. Troubleshooting Testing</a></h3>
 <div class="paragraph">
 <p><strong>Problem: <code>HelpWindowTest</code> fails with a <code>NullPointerException</code>.</strong></p>
 </div>
@@ -1004,22 +1230,22 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="dev-ops"><a class="link" href="#dev-ops">6. Dev Ops</a></h2>
+<h2 id="dev-ops"><a class="link" href="#dev-ops">7. Dev Ops</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="build-automation"><a class="link" href="#build-automation">6.1. Build Automation</a></h3>
+<h3 id="build-automation"><a class="link" href="#build-automation">7.1. Build Automation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingGradle.html">UsingGradle.adoc</a> to learn how to use Gradle for build automation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="continuous-integration"><a class="link" href="#continuous-integration">6.2. Continuous Integration</a></h3>
+<h3 id="continuous-integration"><a class="link" href="#continuous-integration">7.2. Continuous Integration</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://travis-ci.org/">Travis CI</a> and <a href="https://www.appveyor.com/">AppVeyor</a> to perform <em>Continuous Integration</em> on our projects. See <a href="UsingTravis.html">UsingTravis.adoc</a> and <a href="UsingAppVeyor.html">UsingAppVeyor.adoc</a> for more details.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="making-a-release"><a class="link" href="#making-a-release">6.3. Making a Release</a></h3>
+<h3 id="making-a-release"><a class="link" href="#making-a-release">7.3. Making a Release</a></h3>
 <div class="paragraph">
 <p>Here are the steps to create a new release.</p>
 </div>
@@ -1041,7 +1267,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">6.4. Managing Dependencies</a></h3>
+<h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">7.4. Managing Dependencies</a></h3>
 <div class="paragraph">
 <p>A project often depends on third-party libraries. For example, Address Book depends on the <a href="http://wiki.fasterxml.com/JacksonHome">Jackson library</a> for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives.<br>
 a. Include those libraries in the repo (this bloats the repo size)<br>
@@ -1688,6 +1914,10 @@ for <code>RemarkCommandParser</code>.</p>
 <h2 id="user-stories"><a class="link" href="#user-stories">Appendix B: User Stories</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
+<p><strong>User Profile:</strong> John is an undergraduate student in a local university. He has an active social life with many friend circles.
+John wants a way to manage his contacts and a way to remind him tasks and responsibilities in related to these contacts.</p>
+</div>
+<div class="paragraph">
 <p>Priorities: High (must have) - <code>* * *</code>, Medium (nice to have) - <code>* *</code>, Low (unlikely to have) - <code>*</code></p>
 </div>
 <table class="tableblock frame-all grid-all" style="width: 59%;">
@@ -1731,10 +1961,82 @@ for <code>RemarkCommandParser</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">locate details of persons without having to go through the entire list</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">check upcoming birthdays</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track of all people who are having their birthday soon</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">edit contact information</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">make changes if needed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add birthday information</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">remember and keep track of my family members/friends birthday</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">find persons whose names contain a partial string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">locate person whose name I forgot how to spell</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">find persons by tags</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">identify a group of people with common attributes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">undergraduate student user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add events related to one or multiple contacts such as birthday or meetings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track tasks I need to do</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add or remove some tags of a contact</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">quickly update contact information</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hide <a href="#private-contact-detail">private contact details</a> by default</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">minimize chance of someone else seeing them by accident</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add profile photo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">can double check the identity if there are persons with the same name</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add multiple phone number to one person</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">store different contact number as one person may have more than one phone number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">have some important contacts</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">reach to my close friends easily at a click</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">undergraduate student user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">find persons by their address</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">identify which friends stay in the same campus</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">undergraduate student user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">have a reminder pop up when an event is coming up</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">remember to prepare and fulfill my responsibility</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
@@ -1795,6 +2097,216 @@ for <code>RemarkCommandParser</code>.</p>
 <ul class="none">
 <li>
 <p>3a1. AddressBook shows an error message.</p>
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-edit-person" class="discrete">Use case: Edit person</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User request to edit contact information</p>
+</li>
+<li>
+<p>AddressBook shows old and new information stored</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. No such person.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. AddressBook shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>2b. Incorrect format of new information.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b1. AddressBook shows an error message and request for new information again.</p>
+<div class="paragraph">
+<p>Use case resumes at step 1.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-list-all-persons" class="discrete">Use case: List all persons</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User request to have a list of all persons</p>
+</li>
+<li>
+<p>AddressBook shows a list of all persons in the contact list</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The list is empty.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-find-persons-by-tags" class="discrete">Use case: Find persons by tags</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User request to list keywords</p>
+</li>
+<li>
+<p>Application shows a list of persons who has those keywords as tags</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The list is empty.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-find-persons-by-name-string" class="discrete">Use case: Find persons by name string</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User request to key in a name string</p>
+</li>
+<li>
+<p>Application shows a list of persons whose names contain the full or partial string</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The list is empty.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-find-persons-by-phone-number" class="discrete">Use case: Find persons by phone number</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User request key in a phone number</p>
+</li>
+<li>
+<p>Application shows a list of persons associated with the phone number</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The list is empty.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-add-event-associated-with-a-person" class="discrete">Use case: Add event associated with a person</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to list persons</p>
+</li>
+<li>
+<p>Application shows a list of persons</p>
+</li>
+<li>
+<p>User requests to add in an event associate with a specific person in the list</p>
+</li>
+<li>
+<p>Application adds the event</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The list is empty.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+<li>
+<p>3a. The given index is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. Application shows an error message.</p>
 <div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
@@ -1891,7 +2403,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-09-21 15:57:58 +00:00
+Last updated 2017-11-11 14:38:16 +00:00
 </div>
 </div>
 </body>

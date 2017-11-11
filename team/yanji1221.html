@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Yan Ji - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Yan Ji - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-addressbook-neoxpro"><a class="link" href="#project-addressbook-neoxpro">Project: AddressBook - NeoxPro</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>AddressBook - NeoxPro is a desktop address book application used for teaching Software Engineering principles.
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.
+NeoXPro not only allows users to keep track of the personal information of their friends and acquaintances, it helps users
+to manage their everyday tasks too.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/main/yanji1221.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/test/yanji1221.md">Test code</a>] [<a href="https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/unused/yanji1221.md">Unused code</a>] {give links to collated code files}</p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added"><a class="link" href="#enhancement-added">Enhancement Added</a></h3>
+<div class="sect3">
+<h4 id="1-new-parameter-birthday"><a class="link" href="#1-new-parameter-birthday">1. New Parameter: Birthday</a></h4>
+
+</div>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">Adding a person: <code>add</code></a></h3>
+<div class="paragraph">
+<p>Adds a person to the address book<br>
+Format: <code>add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [b/BIRTHDAY] [a/ADDRESS] [pr/PROFILE_PAGE] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A person can have any number of tags (including 0).
+All fields are optional except the person name.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add n/John Doe p/98765432 e/johnd@example.com b/1995/5/21 a/John street, block 123, #01-01 pr/www.facebook.com/john</code></p>
+</li>
+<li>
+<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 b/1999/10/10 t/criminal</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>Having a birthday parameter, users are able to keep track of their friends birthday.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-parameter-in-add-command"><a class="link" href="#adding-a-parameter-in-add-command">Adding a Parameter in Add Command</a></h3>
+<div class="sect3">
+<h4 id="add-birthday"><a class="link" href="#add-birthday">Add Birthday</a></h4>
+<div class="paragraph">
+<p>To add a new birthday in AddCommand, UI, Logic, Model and Storage components are to be modified accordingly.<br>
+Be aware of the inheritance between each component when implementing.
+Refer to Section 3 to observe the relationship between those components.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>UI Component:</code><br>
+PersonCard uses ReadOnlyPerson to create labels of each parameter. New parameter: Birthday, should be added to be included
+so that it can be shown in the information of person when showing person card in UI.</p>
+</li>
+<li>
+<p><code>Logic Component:</code><br>
+To include birthday parameter, several files in logic components should be modified accordingly. E.g. AddCommand, EditCommand,
+AddCommandParser, CliSyntax etc. Commands allows users to input the information, provides an interaction between user and the software.
+Parser is to parse the new parameter information, making sure that information is present before the real add command
+is created. Information being added should be parse to model to create persons if command format is correct.</p>
+</li>
+<li>
+<p><code>Model Component:</code><br>
+Create a new class for birthday so that it can be used under Person class. Person class uses ReadOnlyPerson interface.
+Person Class is to collect and set all information about a particular person. If all parameters is parsed correctly, a person with
+collected information will be created.<br>
+The following diagram shows the relationship of different classes in model component:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelClassForBirthday.png" alt="ModelClassForBirthday" width="300">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Storage Component:</code><br>
+To make sure that birthday can be stored in the xml format for future usage, xmlAdaptedPerson is used to save information of a person in xml format.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="2-coming-birthday-list"><a class="link" href="#2-coming-birthday-list">2. Coming Birthday List</a></h4>
+
+</div>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="special-feature"><a class="link" href="#special-feature">Special feature</a></h3>
+<div class="sect3">
+<h4 id="coming-birthday-list"><a class="link" href="#coming-birthday-list">Coming birthday list</a></h4>
+<div class="paragraph">
+<p>The list will show upcoming birthdays of persons in the address book. The list will cotains people who are having their
+birthday in current month. At the end of each month(the last day), the list will show people who are having their birthday
+in the next month.<br>
+<code>Take note:</code> February is a special month which end at 28 or 29. In the last day of February, people who are having their
+birthday in March will not be shown. Please check the list for upcoming birthday in 1st of March.<br>
+<code>Take note:</code> If a new person with relevant birthday is added or a person&#8217;s birthday is edited to a relevant birthday which
+supposed to be shown in the list, you should restart the software before seeing changes are made in coming birthday list.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ComingBirthdayList.png" alt="ComingBirthdayList" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Current date: 2017/06/12<br>
+Amy with birthday: 1993/06/21<br>
+John with birthday: 1992/06/02<br>
+Only Amy is shown in the list<br></p>
+</li>
+<li>
+<p>Current date: 2017/11/30<br>
+Amy with birthday: 1998/11/12<br>
+John with birthday: 1990/12/01<br>
+Jolin with birthday: 1980/12/31<br>
+John and Jolin are shown in the list<br></p>
+</li>
+<li>
+<p>Current date: 2017/02/19<br>
+Amy with birthday: 1991/02/05<br>
+John with birthday: 1998/02/27<br>
+Jolin with birthday: 1997/03/04<br>
+John and Jolin are shown in the list.</p>
+</li>
+<li>
+<p>Current date: 2017/07/08<br>
+Amy with birthday: 1990/07/17<br>
+Add a new person, John with birthday: 1990/07/10<br>
+Only Amy is shown in the list<br>
+Resart the software<br>
+Both Amy and John are shown in the list<br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>Having a coming birthday list, users will notice who are the next person(s) who are having their birthday soon. This reduce
+the chances of miss those birthday accidentally.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="coming-birthday-list-2"><a class="link" href="#coming-birthday-list-2">Coming Birthday List</a></h3>
+<div class="paragraph">
+<p>Basically, adding a list of upcoming birthday is only related to UI component. A new class should be implemented to hold the list.
+In this case, ComingBirthdayListPanel is implemented. ComingBirthdayListPanel should process all contacts in the person list
+and decide which persons to include in the coming birthday list.<br>
+To get the list of upcoming birthdays, the ComingBirthdayListPanel should have a method comingBirthdayListGetter
+which is implemented in this way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">---
+<span class="directive">private</span> ObservableList&lt;ReadOnlyPerson&gt; comingBirthdayListGetter(ObservableList&lt;ReadOnlyPerson&gt; personList) {
+        <span class="predefined-type">List</span>&lt;ReadOnlyPerson&gt; comingBirthdayList = personList.stream().collect(Collectors.toList());
+        <span class="type">boolean</span> isRemoved = <span class="predefined-constant">false</span>;
+        <span class="predefined-type">Calendar</span> cal = <span class="predefined-type">Calendar</span>.getInstance();
+        <span class="type">int</span> month = cal.get(<span class="predefined-type">Calendar</span>.MONTH)+<span class="integer">1</span>;
+        <span class="type">int</span> date = cal.get(<span class="predefined-type">Calendar</span>.DATE);
+        <span class="comment">//...</span>
+        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; comingBirthdayList.size(); i++) {
+            <span class="keyword">if</span> (!(<span class="predefined-type">Integer</span>.parseInt(comingBirthdayList.get(i).getBirthday().toString()
+                    .substring(<span class="integer">5</span>, <span class="integer">7</span>)) == month)) {
+                comingBirthdayList.remove(i);
+                isRemoved = <span class="predefined-constant">true</span>;
+            }
+            <span class="keyword">else</span> <span class="keyword">if</span>((<span class="predefined-type">Integer</span>.parseInt(comingBirthdayList.get(i).getBirthday().toString()
+                    .substring(<span class="integer">5</span>, <span class="integer">7</span>)) == month) &amp;&amp;
+                    <span class="predefined-type">Integer</span>.parseInt(comingBirthdayList.get(i).getBirthday().toString()
+                    .substring(<span class="integer">8</span>)) &lt; date) {
+                comingBirthdayList.remove(i);
+                isRemoved = <span class="predefined-constant">true</span>;
+            }
+            <span class="comment">//...</span>
+        }
+        <span class="keyword">return</span> FXCollections.observableArrayList(comingBirthdayList);
+}
+Main window should include the newly added ComingBirthdayListPanel <span class="type">class</span> <span class="class">so</span> that the panel will be shown in the main window.
+A fxml file, in <span class="local-variable">this</span> <span class="keyword">case</span> is ComingBirthdayListPanel.fxml <span class="keyword">for</span> coming birthday list should be present to reserve a section
+<span class="keyword">for</span> the list in the main window UI. MainWindow.fxml should modified accordingly to include the ComingBirthdayListPanel.fxml.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="3-colored-tags"><a class="link" href="#3-colored-tags">3. Colored Tags</a></h4>
+
+</div>
+<div class="sect3">
+<h4 id="external-behavior-3"><a class="link" href="#external-behavior-3">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Description</mark></p>
+</div>
+<div class="paragraph">
+<p>Different colours will be distributed to different tags. The colours will not be repeated
+until all colours in the database of NeoxPro(around 33 types of colours) had been used up.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ColoredTags.png" alt="ColoredTags" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Description</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
+<div class="paragraph">
+<p>Tags are colored so that users can see how many different tags each person have and differentiate between different tags easily.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="4-modified-elements-in-status-bar-footer"><a class="link" href="#4-modified-elements-in-status-bar-footer">4. Modified Elements in Status Bar Footer</a></h4>
+
+</div>
+<div class="sect3">
+<h4 id="external-behavior-4"><a class="link" href="#external-behavior-4">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Description</mark></p>
+</div>
+<div class="paragraph">
+<p>Added number of persons in the address book and the current date to the status bar footer.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/StatusBarFooter.png" alt="StatusBarFooter" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Description</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-4"><a class="link" href="#justification-4">Justification</a></h4>
+<div class="paragraph">
+<p>Number of persons allow users to know how many people are in the address book now.<br>
+Current date are for users who auto-hiding their task bar to check date quickly for birthday feature.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="5-modified-colours-in-result-display"><a class="link" href="#5-modified-colours-in-result-display">5. Modified Colours in Result Display</a></h4>
+
+</div>
+<div class="sect3">
+<h4 id="external-behavior-5"><a class="link" href="#external-behavior-5">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Description</mark></p>
+</div>
+<div class="paragraph">
+<p>Red colour text will show if command succeeds,<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SuccessResult.png" alt="SuccessResult" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p>yellow colour text will show if command fails.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/FailResult.png" alt="FailResult" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Description</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-5"><a class="link" href="#justification-5">Justification</a></h4>
+<div class="paragraph">
+<p>Colored result allow users to distinguish between success command and fail command easily and quickly.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed"><a class="link" href="#enhancement-proposed">Enhancement Proposed:</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the GUI color scheme and font (Commits <a href="https://github.com/CS2103AUG2017-W10-B4/main/commit/93b87abc63ea0b24f35911c6c07847e3e0139edd">commit on 4/11/2017</a>,
+<a href="https://github.com/CS2103AUG2017-W10-B4/main/commit/3ba89364dfc3f83e977d8866dad8a38b3c5fc554">commit on 28/10/2017</a>)</p>
+</li>
+<li>
+<p>Add introduction section to Developer Guide</p>
+</li>
+</ul>
+</div>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="introduction"><a class="link" href="#introduction">Introduction</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="software-information"><a class="link" href="#software-information">Software Information</a></h3>
+<div class="paragraph">
+<p>NeoXPro is a command line interface(CLI) address book. NeoXPro not only allows users to keep track of the personal
+information of their friends and acquaintances, it helps users to manage their everyday tasks too. The software consists
+of four components: UI, Logic, Model, Storage. The language used in implementing this software is JAVA.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="purpose-of-developer-guide"><a class="link" href="#purpose-of-developer-guide">Purpose of Developer Guide</a></h3>
+<div class="paragraph">
+<p>Do not worry if you have no idea about how to start. This developer guide will help new team members like you to understand
+how NeoXPro works. You will definitely find clues about how to contribute to NeoXPro after thorough reading of this document.
+You can always refer to this document if you have any doubts when implementing new features to NeoXPro.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="content-preview"><a class="link" href="#content-preview">Content Preview</a></h3>
+<div class="paragraph">
+<p>This developer guide will first bring you through the design and internal structure of NeoXPro. You will be able to understand
+the how four components are linked and inter-related. There will be explanation on the enhancements implemented too. You can
+study on those implemented features and at the same time, try to understand the logic behind every implementation. This will
+help when you are implementing your own new features. After implementing, you will need to update relevant documentations and
+running various tests to check that your codes work fine. The documentation and testing section will guide you through those
+processes. Read this document now to understand the best address book, NeoXPro.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="ulist">
+<ul>
+<li>
+<p>Help other group to find bugs or make suggestion(Issue <a href="https://github.com/CS2103AUG2017-W10-B3/main/issues/76">#76</a>, <a href="https://github.com/CS2103AUG2017-W10-B3/main/issues/75">#75</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">Project: PowerPointLabs</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>{Optionally (not graded), you may include other projects in your portfolio.}</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-11-11 14:38:16 +00:00
+</div>
+</div>
+</body>
+</html>
