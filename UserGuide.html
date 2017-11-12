@@ -50,11 +50,10 @@
 <li><a href="#undoing-previous-command-code-undo-code">4.19. Undoing previous command : <code>undo</code></a></li>
 <li><a href="#redoing-the-previously-undone-command-code-redo-code">4.20. Redoing the previously undone command : <code>redo</code></a></li>
 <li><a href="#clearing-all-entries-code-clear-code">4.21. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#auto-reminder-since-v1-5">4.22. Auto-reminder (since v1.5)</a></li>
-<li><a href="#exiting-the-program-code-exit-code">4.23. Exiting the program : <code>exit</code></a></li>
-<li><a href="#exporting-the-data-code-export-code">4.24. Exporting the data: <code>export</code></a></li>
-<li><a href="#special-feature">4.25. Special feature</a></li>
-<li><a href="#saving-the-data">4.26. Saving the data</a></li>
+<li><a href="#exporting-the-data-code-export-code">4.22. Exporting the data: <code>export</code></a></li>
+<li><a href="#special-feature">4.23. Special feature</a></li>
+<li><a href="#exiting-the-program-code-exit-code">4.24. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">4.25. Saving the data</a></li>
 </ul>
 </li>
 <li><a href="#faq">5. FAQ</a></li>
@@ -398,7 +397,7 @@ Format: <code>findTag KEYWORD [MORE_KEYWORDS]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>The search is case insensitive. e.g <code>cs2103t</code> will match <code>CS2103T</code></p>
+<p>The search is case sensitive. e.g <code>cs2103t</code> will not match <code>CS2103T</code></p>
 </li>
 <li>
 <p>The order of the keywords does not matter.</p>
@@ -863,29 +862,16 @@ Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="auto-reminder-since-v1-5"><a class="link" href="#auto-reminder-since-v1-5">4.22. Auto-reminder (since v1.5)</a></h3>
-<div class="paragraph">
-<p>NeoXPro Manager will remind the user events occur on the day when when starting the application.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">4.23. Exiting the program : <code>exit</code></a></h3>
-<div class="paragraph">
-<p>Exits the program.<br>
-Format: <code>exit</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exporting-the-data-code-export-code"><a class="link" href="#exporting-the-data-code-export-code">4.24. Exporting the data: <code>export</code></a></h3>
+<h3 id="exporting-the-data-code-export-code"><a class="link" href="#exporting-the-data-code-export-code">4.22. Exporting the data: <code>export</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>export</code>
 Address book data are exported</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="special-feature"><a class="link" href="#special-feature">4.25. Special feature</a></h3>
+<h3 id="special-feature"><a class="link" href="#special-feature">4.23. Special feature</a></h3>
 <div class="sect3">
-<h4 id="coming-birthday-list"><a class="link" href="#coming-birthday-list">4.25.1. Coming birthday list</a></h4>
+<h4 id="coming-birthday-list"><a class="link" href="#coming-birthday-list">4.23.1. Coming birthday list</a></h4>
 <div class="paragraph">
 <p>The list will show upcoming birthdays of persons in the address book. The list will cotains people who are having their
 birthday in current month. At the end of each month(the last day), the list will show people who are having their birthday
@@ -929,9 +915,22 @@ Both Amy and John are shown in the list<br></p>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="auto-reminder-since-v1-5"><a class="link" href="#auto-reminder-since-v1-5">4.23.2. Auto-reminder (since v1.5)</a></h4>
+<div class="paragraph">
+<p>NeoXPro Manager will remind the user events occur on the day when when starting the application.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">4.26. Saving the data</a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">4.24. Exiting the program : <code>exit</code></a></h3>
+<div class="paragraph">
+<p>Exits the program.<br>
+Format: <code>exit</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">4.25. Saving the data</a></h3>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -1014,7 +1013,7 @@ e.g.<code>select 3</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 16:28:32 +00:00
+Last updated 2017-11-12 16:41:49 +00:00
 </div>
 </div>
 </body>
