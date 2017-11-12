@@ -89,6 +89,13 @@ Returns all persons with both <code>friend</code> and <code>CS2103T</code> tag.<
 <p>The address book had tags for each contact, however there was no way to search for contact with certain tags.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<div class="paragraph">
+<p>Tag component in model already had API method for searching, but unused. Implementation is similar to <code>find</code> command
+but instead of interacting with <code>Name</code> component and its predicate we interact with <code>Tag</code> and its predicate.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="enhancement-added-locate-a-person"><a class="link" href="#enhancement-added-locate-a-person">Enhancement Added: Locate a person</a></h3>
@@ -147,12 +154,11 @@ Locates the 1st person in the results of the <code>find</code> command.</p>
 <div class="sect3">
 <h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
 <div class="paragraph">
-<p>May help the user finding the contact address quickly and perhaps direction if the user want to go there.
-Implementation</p>
+<p>May help the user finding the contact address quickly and perhaps direction if the user want to go there.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
 <div class="paragraph">
 <p>Similar to select command but load a google map page instead.</p>
 </div>
@@ -250,13 +256,24 @@ Deletes the 2nd listed event in the address book.</p>
 <div class="sect3">
 <h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
 <div class="paragraph">
-<p>The application is also meant to be a task manager. Thus there is a need to implement task functionality.</p>
+<p>The application is also meant to be a task manager. Thus there is a need to implement task/event functionality.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
 <div class="paragraph">
-<p>Overall behavior is similar to Person class logic and model.</p>
+<p>Overall behavior is similar to Person class logic and model.
+Auto-reminder is done by filtering events whose date is same as the current date, and adding a GUI popup panel section
+to display it similar to the <code>HelpWindow</code>. These steps are automatically initialized at the application start.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-change-application-css-theme"><a class="link" href="#enhancement-added-change-application-css-theme">Enhancement Added: Change application css theme</a></h3>
+<div class="sect3">
+<h4 id="justification-4"><a class="link" href="#justification-4">Justification</a></h4>
+<div class="paragraph">
+<p>Original DarkTheme color looked dull and uninspired for a user end product.</p>
 </div>
 </div>
 </div>
@@ -265,16 +282,16 @@ Deletes the 2nd listed event in the address book.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Modify add command to accept partial string.</p>
+<p>Modified add command to accept partial string.</p>
 </li>
 <li>
 <p>Updated the GUI part to display events.</p>
 </li>
 <li>
-<p>Managed the team repository as team lead.</p>
+<p>Managed the team repository and progress as team lead.</p>
 </li>
 <li>
-<p>Checked pull requests code quality. Resolved conflict and fix bugs from pull requests codes of other members.</p>
+<p>Checked pull requests code quality. Resolved conflict and fix bugs from pull requests of other members.</p>
 </li>
 <li>
 <p>Fixed all checkstyle errors of every team member.</p>
@@ -287,7 +304,7 @@ Deletes the 2nd listed event in the address book.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 10:01:15 +00:00
+Last updated 2017-11-12 10:16:35 +00:00
 </div>
 </div>
 </body>
