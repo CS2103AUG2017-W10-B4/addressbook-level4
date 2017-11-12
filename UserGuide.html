@@ -39,19 +39,22 @@
 <li><a href="#locating-persons-by-tags-code-findtag-code-since-v1-1">4.8. Locating persons by tags: <code>findTag</code> (since v1.1)</a></li>
 <li><a href="#deleting-a-person-code-delete-code">4.9. Deleting a person : <code>delete</code></a></li>
 <li><a href="#deleting-all-contacts-added-before-a-specific-date-code-deletebefore-code-coming-in-v2-0">4.10. Deleting all contacts added before a specific date: <code>deleteBefore</code> (coming in v2.0)</a></li>
-<li><a href="#selecting-a-person-code-select-code">4.11. Selecting a person : <code>select</code></a></li>
-<li><a href="#locating-a-person-s-address-code-locate-code-since-v1-3">4.12. Locating a person&#8217;s address : <code>locate</code> (since v1.3)</a></li>
-<li><a href="#adding-an-event-code-addevent-code-since-v1-2">4.13. Adding an event: <code>addEvent</code> (since v1.2)</a></li>
-<li><a href="#deleting-an-event-code-deleteevent-code-since-v1-4">4.14. Deleting an event : <code>deleteEvent</code> (since v1.4)</a></li>
-<li><a href="#listing-entered-commands-code-history-code">4.15. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">4.16. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">4.17. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">4.18. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#auto-reminder-since-v1-5">4.19. Auto-reminder (since v1.5)</a></li>
-<li><a href="#exiting-the-program-code-exit-code">4.20. Exiting the program : <code>exit</code></a></li>
-<li><a href="#exporting-the-data-code-export-code">4.21. Exporting the data: <code>export</code></a></li>
-<li><a href="#special-feature">4.22. Special feature</a></li>
-<li><a href="#grouping-several-persons-code-group-code">4.23. Grouping Several persons : <code>group</code></a></li>
+<li><a href="#favoriting-a-person-code-fav-code">4.11. Favoriting a person : <code>fav</code></a></li>
+<li><a href="#unfavoriting-a-person-code-unfav-code">4.12. Unfavoriting a person : <code>unfav</code></a></li>
+<li><a href="#listing-all-favorited-persons-code-list-code">4.13. Listing all favorited persons : <code>list</code></a></li>
+<li><a href="#selecting-a-person-code-select-code">4.14. Selecting a person : <code>select</code></a></li>
+<li><a href="#locating-a-person-s-address-code-locate-code-since-v1-3">4.15. Locating a person&#8217;s address : <code>locate</code> (since v1.3)</a></li>
+<li><a href="#adding-an-event-code-addevent-code-since-v1-2">4.16. Adding an event: <code>addEvent</code> (since v1.2)</a></li>
+<li><a href="#deleting-an-event-code-deleteevent-code-since-v1-4">4.17. Deleting an event : <code>deleteEvent</code> (since v1.4)</a></li>
+<li><a href="#listing-entered-commands-code-history-code">4.18. Listing entered commands : <code>history</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code">4.19. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code">4.20. Redoing the previously undone command : <code>redo</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">4.21. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#auto-reminder-since-v1-5">4.22. Auto-reminder (since v1.5)</a></li>
+<li><a href="#exiting-the-program-code-exit-code">4.23. Exiting the program : <code>exit</code></a></li>
+<li><a href="#exporting-the-data-code-export-code">4.24. Exporting the data: <code>export</code></a></li>
+<li><a href="#special-feature">4.25. Special feature</a></li>
+<li><a href="#grouping-several-persons-code-group-code">4.26. Grouping Several persons : <code>group</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">5. FAQ</a></li>
@@ -507,7 +510,84 @@ Deletes all persons add before 10/01/2014 from the address book.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">4.11. Selecting a person : <code>select</code></a></h3>
+<h3 id="favoriting-a-person-code-fav-code"><a class="link" href="#favoriting-a-person-code-fav-code">4.11. Favoriting a person : <code>fav</code></a></h3>
+<div class="paragraph">
+<p>Favorites the person identified by the index number used in the last person listing.<br>
+Format: <code>fav INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Favorites the person at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>If the person has already been favorited, the system will give you a reminder.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
+</li>
+<li>
+<p>A star will appear next to the person name if he is favorited.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:
+* <code>fav 2</code><br>
+Favorite the 2nd listed person in the address book.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unfavoriting-a-person-code-unfav-code"><a class="link" href="#unfavoriting-a-person-code-unfav-code">4.12. Unfavoriting a person : <code>unfav</code></a></h3>
+<div class="paragraph">
+<p>Favorites the person identified by the index number used in the last person listing.<br>
+Format: <code>Unfav INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Unfavorites the person at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>If the person is not favorited/already unfavorited, the system will give you a reminder.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
+</li>
+<li>
+<p>The star next to the person name  will disappear if he is unfavorited.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:
+* <code>Unfav 2</code><br>
+Undo favorite the 2nd listed person in the address book.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-all-favorited-persons-code-list-code"><a class="link" href="#listing-all-favorited-persons-code-list-code">4.13. Listing all favorited persons : <code>list</code></a></h3>
+<div class="paragraph">
+<p>Shows a list of all favorited persons in the address book.<br>
+Format: <code>listfav</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">4.14. Selecting a person : <code>select</code></a></h3>
 <div class="paragraph">
 <p>Selects the person identified by the index number used in the last person listing.<br>
 Format: <code>select INDEX</code></p>
@@ -567,7 +647,7 @@ The 1st person in the list does not have the profile page in address book.<br></
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-a-person-s-address-code-locate-code-since-v1-3"><a class="link" href="#locating-a-person-s-address-code-locate-code-since-v1-3">4.12. Locating a person&#8217;s address : <code>locate</code> (since v1.3)</a></h3>
+<h3 id="locating-a-person-s-address-code-locate-code-since-v1-3"><a class="link" href="#locating-a-person-s-address-code-locate-code-since-v1-3">4.15. Locating a person&#8217;s address : <code>locate</code> (since v1.3)</a></h3>
 <div class="paragraph">
 <p>Locate the person&#8217;s address identified by the index number used in the last person listing.<br>
 Format: <code>locate INDEX</code></p>
@@ -608,7 +688,7 @@ Locates the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-an-event-code-addevent-code-since-v1-2"><a class="link" href="#adding-an-event-code-addevent-code-since-v1-2">4.13. Adding an event: <code>addEvent</code> (since v1.2)</a></h3>
+<h3 id="adding-an-event-code-addevent-code-since-v1-2"><a class="link" href="#adding-an-event-code-addevent-code-since-v1-2">4.16. Adding an event: <code>addEvent</code> (since v1.2)</a></h3>
 <div class="paragraph">
 <p>Adds a person to the address book<br>
 Format: <code>addEvent n/EVENT_NAME d/DD-MM-YY de/[EXTRA]</code></p>
@@ -643,7 +723,7 @@ Add a new event with empty description.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-an-event-code-deleteevent-code-since-v1-4"><a class="link" href="#deleting-an-event-code-deleteevent-code-since-v1-4">4.14. Deleting an event : <code>deleteEvent</code> (since v1.4)</a></h3>
+<h3 id="deleting-an-event-code-deleteevent-code-since-v1-4"><a class="link" href="#deleting-an-event-code-deleteevent-code-since-v1-4">4.17. Deleting an event : <code>deleteEvent</code> (since v1.4)</a></h3>
 <div class="paragraph">
 <p>Deletes the specified event from the address book.<br>
 Format: <code>deleteEvent INDEX</code></p>
@@ -678,7 +758,7 @@ Deletes the 2nd listed event in the address book.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">4.15. Listing entered commands : <code>history</code></a></h3>
+<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">4.18. Listing entered commands : <code>history</code></a></h3>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code></p>
@@ -699,7 +779,7 @@ Format: <code>history</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">4.16. Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">4.19. Undoing previous command : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code></p>
@@ -744,7 +824,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">4.17. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">4.20. Redoing the previously undone command : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -776,36 +856,36 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">4.18. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">4.21. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from the address book.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="auto-reminder-since-v1-5"><a class="link" href="#auto-reminder-since-v1-5">4.19. Auto-reminder (since v1.5)</a></h3>
+<h3 id="auto-reminder-since-v1-5"><a class="link" href="#auto-reminder-since-v1-5">4.22. Auto-reminder (since v1.5)</a></h3>
 <div class="paragraph">
 <p>NeoXPro Manager will remind the user events occur on the day when when starting the application.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">4.20. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">4.23. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-the-data-code-export-code"><a class="link" href="#exporting-the-data-code-export-code">4.21. Exporting the data: <code>export</code></a></h3>
+<h3 id="exporting-the-data-code-export-code"><a class="link" href="#exporting-the-data-code-export-code">4.24. Exporting the data: <code>export</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>export</code>
 Address book data are exported</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="special-feature"><a class="link" href="#special-feature">4.22. Special feature</a></h3>
+<h3 id="special-feature"><a class="link" href="#special-feature">4.25. Special feature</a></h3>
 <div class="sect3">
-<h4 id="coming-birthday-list"><a class="link" href="#coming-birthday-list">4.22.1. Coming birthday list</a></h4>
+<h4 id="coming-birthday-list"><a class="link" href="#coming-birthday-list">4.25.1. Coming birthday list</a></h4>
 <div class="paragraph">
 <p>The list will show upcoming birthdays of persons in the address book. The list will cotains people who are having their
 birthday in current month. At the end of each month(the last day), the list will show people who are having their birthday
@@ -858,7 +938,7 @@ Both Amy and John are shown in the list<br></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="grouping-several-persons-code-group-code"><a class="link" href="#grouping-several-persons-code-group-code">4.23. Grouping Several persons : <code>group</code></a></h3>
+<h3 id="grouping-several-persons-code-group-code"><a class="link" href="#grouping-several-persons-code-group-code">4.26. Grouping Several persons : <code>group</code></a></h3>
 <div class="paragraph">
 <p>Grouping several people into a group in addressbook.<br>
 Format: <code>group GROUP_NAME [INDEX_1] [INDEX_2] &#8230;&#8203;</code></p>
@@ -868,19 +948,19 @@ Format: <code>group GROUP_NAME [INDEX_1] [INDEX_2] &#8230;&#8203;</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the person at the specified <code>INDEX</code>. The index refers to the index number shown in the last person listing. The index must be a positive integer 1, 2, 3, …​</p>
+<p>Groups the person at the specified <code>INDEX</code>. The index refers to the index number shown in the last person listing.</p>
 </li>
 <li>
-<p>At least one of the optional fields must be provided.</p>
+<p>The index must be a positive integer 1, 2, 3, …​</p>
 </li>
 <li>
-<p>Existing values will be updated to the input values.</p>
+<p>You can create an empty group. (i.e. just "group GROUP_NAME", with no INDEX after that.</p>
 </li>
 <li>
-<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
+<p>If you happen to miss a GROUP_NAME, the system will remind you to enter one.</p>
 </li>
 <li>
-<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
+<p>Group name can only be a word.</p>
 </li>
 </ul>
 </div>
@@ -892,11 +972,11 @@ Format: <code>group GROUP_NAME [INDEX_1] [INDEX_2] &#8230;&#8203;</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>edit 1 p/91234567 e/johndoe@example.com</code><br>
-Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
+<p><code>group star 1 2</code>
+Group the first and second person into a group named "star".</p>
 </li>
 <li>
-<p><code>edit 2 n/Betsy Crower t/</code><br>
+<p><code>group CS2103T</code>
 Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.
 === Saving the data</p>
 </li>
@@ -984,7 +1064,7 @@ e.g.<code>select 3</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 10:16:35 +00:00
+Last updated 2017-11-12 11:16:09 +00:00
 </div>
 </div>
 </body>
