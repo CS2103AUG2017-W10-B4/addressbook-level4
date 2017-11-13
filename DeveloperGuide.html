@@ -60,42 +60,10 @@
 <li><a href="#task-event-management">4.7. (Task) event management</a></li>
 <li><a href="#event-auto-reminder">4.8. Event auto-reminder</a></li>
 <li><a href="#coming-birthday-list">4.9. Coming Birthday List</a></li>
-<li><a href="#export-command">4.10. Export Command</a></li>
-<li><a href="#configuration">4.11. Configuration</a></li>
+<li><a href="#favoriting-a-person-using-favoritecommand">4.10. Favoriting a person using FavoriteCommand.</a></li>
+<li><a href="#unfavoriting-a-person-using-unfavoritecommand">4.11. Unfavoriting a person using UnfavoriteCommand.</a></li>
 </ul>
 </li>
-<li><a href="#documentation">5. Documentation</a>
-<ul class="sectlevel2">
-<li><a href="#editing-documentation">5.1. Editing Documentation</a></li>
-<li><a href="#publishing-documentation">5.2. Publishing Documentation</a></li>
-<li><a href="#converting-documentation-to-pdf-format">5.3. Converting Documentation to PDF Format</a></li>
-</ul>
-</li>
-<li><a href="#testing">6. Testing</a>
-<ul class="sectlevel2">
-<li><a href="#running-tests">6.1. Running Tests</a></li>
-<li><a href="#types-of-tests">6.2. Types of Tests</a></li>
-<li><a href="#troubleshooting-testing">6.3. Troubleshooting Testing</a></li>
-</ul>
-</li>
-<li><a href="#dev-ops">7. Dev Ops</a>
-<ul class="sectlevel2">
-<li><a href="#build-automation">7.1. Build Automation</a></li>
-<li><a href="#continuous-integration">7.2. Continuous Integration</a></li>
-<li><a href="#making-a-release">7.3. Making a Release</a></li>
-<li><a href="#managing-dependencies">7.4. Managing Dependencies</a></li>
-</ul>
-</li>
-<li><a href="#suggested-programming-tasks-to-get-started">Appendix A: Suggested Programming Tasks to Get Started</a>
-<ul class="sectlevel2">
-<li><a href="#improving-each-component">A.1. Improving Each Component</a></li>
-<li><a href="#creating-a-new-command-code-remark-code">A.2. Creating a New Command: <code>remark</code></a></li>
-</ul>
-</li>
-<li><a href="#user-stories">Appendix B: User Stories</a></li>
-<li><a href="#use-cases">Appendix C: Use Cases</a></li>
-<li><a href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></li>
-<li><a href="#glossary">Appendix E: Glossary</a></li>
 </ul>
 </div>
 </div>
@@ -825,7 +793,7 @@ Refer to Section 3 to observe the relationship between those components.</p>
 <ul>
 <li>
 <p><code>UI Component:</code><br>
-PersonCard uses ReadOnlyPerson to create labels of each parameter. New parameter: Birthday, should be added to be included
+PersonCard uses ReadOnlyPerson to create labels of most parameters. New parameter: Birthday, should be added to be included
 so that it can be shown in the information of person when showing person card in UI.</p>
 </li>
 <li>
@@ -1097,27 +1065,111 @@ which is implemented in this way:</p>
 A fxml file, in this case is ComingBirthdayListPanel.fxml for coming birthday list should be present to reserve a section
 for the list in the main window UI. MainWindow.fxml should modified accordingly to include the ComingBirthdayListPanel.fxml.</p>
 </div>
+<div class="paragraph">
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="export-command"><a class="link" href="#export-command">4.10. Export Command</a></h3>
+<h3 id="favoriting-a-person-using-favoritecommand"><a class="link" href="#favoriting-a-person-using-favoritecommand">4.10. Favoriting a person using FavoriteCommand.</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="unfavoriting-a-person-using-unfavoritecommand"><a class="link" href="#unfavoriting-a-person-using-unfavoritecommand">4.11. Unfavoriting a person using UnfavoriteCommand.</a></h3>
+<div class="sect3">
+<h4 id="favoritecommand-unfavorite-command"><a class="link" href="#favoritecommand-unfavorite-command">4.11.1. FavoriteCommand/Unfavorite Command</a></h4>
 <div class="paragraph">
-<p><code>export</code> access the file <code>addressbook.xml</code> to retrieve each person and his/her properties and write it on the file at the specified input.
+<p>To Favorite/Unfavorite a person, UI, Logic, Model and Storage components are to be modified
+accordingly.<br>
+Be aware of the inheritance between each component when implementing.
+Refer to Section 3 to observe the relationship between those components.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>UI Component:</code><br>
+PersonCard uses ReadOnlyPerson to create labels of most parameters, and it uses an imageView to record the "Favorite" parameter.<br>
+When a person is favorited, a star would appear next to the person name, and it would disappear if he/she is unfavorited.<br>
+Different from other parameters, since 'favorite' is based on a boolean value, instead of using bindListener,
+A new 'star' image is set inside the ImageView if it is meant to appear and it is set to null when it is
+meant to disappear.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This uniqueness is demonstrated as below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">        <span class="keyword">if</span> (person.getFavorite().value == <span class="predefined-constant">true</span>) {
+            <span class="predefined-type">Image</span> image = <span class="keyword">new</span> <span class="predefined-type">Image</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/images/star.png</span><span class="delimiter">&quot;</span></span>);
+            favorite.setImage(image);
+        } <span class="keyword">else</span> {
+            favorite = <span class="predefined-constant">null</span>;
+        }</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Logic Component:</code><br>
+To include the Favorite parameter, several files in logic components should be modified accordingly.
+E.g. AddCommand, EditCommand, AddCommandParser, etc.
+Parser is to parse the new parameter information, making sure that information is present before the real add command
+is created. Information being added should be parse to model to create persons if command format is correct.</p>
+</li>
+<li>
+<p><code>Model Component:</code><br>
+Create a new class for Favorite so that it can be used under Person class. Person class uses ReadOnlyPerson interface.
+Person Class is to collect and set all information about a particular person. If all parameters is parsed correctly,
+a person with collected information will be created.<br>
+The following diagram shows the relationship of different classes in model component:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ModelClassForFavorite1.png" alt="ModelClassForFavorite1" width="300">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Storage Component:</code><br>
+To make sure that favorite value can be stored in the xml format for future usage, xmlAdaptedPerson is used to save
+information of a person in xml format.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>List all your favorite persons using ListFavoriteCommand.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="listfavortecommand"><a class="link" href="#listfavortecommand">4.11.2. ListFavorteCommand</a></h4>
+<div class="paragraph">
+<p>To list all your favorite persons in AddressBook, UI, Model, and Logic Components are involved.
+Logic Component includes <code>ListFavoriteCommand</code> and <code>ListFavoriteCommandParser</code>, and they call <code>FavoritePredicate</code> in Model Component
+to check whether a person is favorited or not, UI component then decide which persons to include in the PersonListPanel.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>=== Export Command
+<code>export</code> access the file <code>addressbook.xml</code> to retrieve each person and his/her properties and write it on the file at the specified input.
 Its implementation contains 2 classes: <code>ExportCommand</code> and <code>ExportCommandParser</code>.<br>
 The parser <code>ExportCommandParser</code> of <code>export</code> parses the file path input as a <code>String</code> to <code>ExportCommand</code>.<br>
-<code>ExportCommand</code>, which handles the logic of <code>export</code> command, then writes the exported file on the specified input file path.</p>
+<code>ExportCommand</code>, which handles the logic of <code>export</code> command, then writes the exported file on the specified input file path.
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; upstream/master</p>
 </div>
+<div class="paragraph">
+<p>=== Configuration</p>
 </div>
-<div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">4.11. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
+<div class="paragraph">
+<p>== Documentation</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="documentation"><a class="link" href="#documentation">5. Documentation</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>We use asciidoc for writing documentation.</p>
 </div>
@@ -1133,21 +1185,22 @@ We chose asciidoc over Markdown because asciidoc, although a bit more complex th
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="editing-documentation"><a class="link" href="#editing-documentation">5.1. Editing Documentation</a></h3>
+<div class="paragraph">
+<p>=== Editing Documentation</p>
+</div>
 <div class="paragraph">
 <p>See <a href="UsingGradle.html#rendering-asciidoc-files">UsingGradle.adoc</a> to learn how to render <code>.adoc</code> files locally to preview the end result of your edits.
 Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows you to preview the changes you have made to your <code>.adoc</code> files in real-time.</p>
 </div>
+<div class="paragraph">
+<p>=== Publishing Documentation</p>
 </div>
-<div class="sect2">
-<h3 id="publishing-documentation"><a class="link" href="#publishing-documentation">5.2. Publishing Documentation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingTravis.html#deploying-github-pages">UsingTravis.adoc</a> to learn how to deploy GitHub Pages using Travis.</p>
 </div>
+<div class="paragraph">
+<p>=== Converting Documentation to PDF Format</p>
 </div>
-<div class="sect2">
-<h3 id="converting-documentation-to-pdf-format"><a class="link" href="#converting-documentation-to-pdf-format">5.3. Converting Documentation to PDF Format</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://www.google.com/chrome/browser/desktop/">Google Chrome</a> for converting documentation to PDF format, as Chrome&#8217;s PDF engine preserves hyperlinks used in webpages.</p>
 </div>
@@ -1178,14 +1231,12 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="paragraph">
 <p><em>Figure 5.6.1 : Saving documentation as PDF files in Chrome</em></p>
 </div>
+<div class="paragraph">
+<p>== Testing</p>
 </div>
+<div class="paragraph">
+<p>=== Running Tests</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="testing"><a class="link" href="#testing">6. Testing</a></h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="running-tests"><a class="link" href="#running-tests">6.1. Running Tests</a></h3>
 <div class="paragraph">
 <p>There are three ways to run tests.</p>
 </div>
@@ -1245,9 +1296,9 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 <div class="paragraph">
 <p>To run tests in headless mode, open a console and run the command <code>gradlew clean headless allTests</code> (Mac/Linux: <code>./gradlew clean headless allTests</code>)</p>
 </div>
+<div class="paragraph">
+<p>=== Types of Tests</p>
 </div>
-<div class="sect2">
-<h3 id="types-of-tests"><a class="link" href="#types-of-tests">6.2. Types of Tests</a></h3>
 <div class="paragraph">
 <p>We have two types of tests:</p>
 </div>
@@ -1287,11 +1338,9 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </li>
 </ol>
 </div>
-</div>
-<div class="sect2">
-<h3 id="troubleshooting-testing"><a class="link" href="#troubleshooting-testing">6.3. Troubleshooting Testing</a></h3>
 <div class="paragraph">
-<p><strong>Problem: <code>HelpWindowTest</code> fails with a <code>NullPointerException</code>.</strong></p>
+<p>=== Troubleshooting Testing
+<strong>Problem: <code>HelpWindowTest</code> fails with a <code>NullPointerException</code>.</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1303,26 +1352,24 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>== Dev Ops</p>
 </div>
+<div class="paragraph">
+<p>=== Build Automation</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="dev-ops"><a class="link" href="#dev-ops">7. Dev Ops</a></h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="build-automation"><a class="link" href="#build-automation">7.1. Build Automation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingGradle.html">UsingGradle.adoc</a> to learn how to use Gradle for build automation.</p>
 </div>
+<div class="paragraph">
+<p>=== Continuous Integration</p>
 </div>
-<div class="sect2">
-<h3 id="continuous-integration"><a class="link" href="#continuous-integration">7.2. Continuous Integration</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://travis-ci.org/">Travis CI</a> and <a href="https://www.appveyor.com/">AppVeyor</a> to perform <em>Continuous Integration</em> on our projects. See <a href="UsingTravis.html">UsingTravis.adoc</a> and <a href="UsingAppVeyor.html">UsingAppVeyor.adoc</a> for more details.</p>
 </div>
+<div class="paragraph">
+<p>=== Making a Release</p>
 </div>
-<div class="sect2">
-<h3 id="making-a-release"><a class="link" href="#making-a-release">7.3. Making a Release</a></h3>
 <div class="paragraph">
 <p>Here are the steps to create a new release.</p>
 </div>
@@ -1342,20 +1389,17 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>=== Managing Dependencies</p>
 </div>
-<div class="sect2">
-<h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">7.4. Managing Dependencies</a></h3>
 <div class="paragraph">
 <p>A project often depends on third-party libraries. For example, Address Book depends on the <a href="http://wiki.fasterxml.com/JacksonHome">Jackson library</a> for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives.<br>
 a. Include those libraries in the repo (this bloats the repo size)<br>
 b. Require developers to download those libraries manually (this creates extra work for developers)</p>
 </div>
+<div class="paragraph">
+<p>== Suggested Programming Tasks to Get Started</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="suggested-programming-tasks-to-get-started"><a class="link" href="#suggested-programming-tasks-to-get-started">Appendix A: Suggested Programming Tasks to Get Started</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>Suggested path for new programmers:</p>
 </div>
@@ -1369,8 +1413,9 @@ b. Require developers to download those libraries manually (this creates extra w
 </li>
 </ol>
 </div>
-<div class="sect2">
-<h3 id="improving-each-component"><a class="link" href="#improving-each-component">A.1. Improving Each Component</a></h3>
+<div class="paragraph">
+<p>=== Improving Each Component</p>
+</div>
 <div class="paragraph">
 <p>Each individual exercise in this section is component-based (i.e. you would not need to modify the other components to get it to work).</p>
 </div>
@@ -1712,16 +1757,15 @@ Do take a look at the <a href="#storage-component">Design: Storage Component</a>
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>=== Creating a New Command: <code>remark</code></p>
 </div>
-<div class="sect2">
-<h3 id="creating-a-new-command-code-remark-code"><a class="link" href="#creating-a-new-command-code-remark-code">A.2. Creating a New Command: <code>remark</code></a></h3>
 <div class="paragraph">
 <p>By creating this command, you will get a chance to learn how to implement a feature end-to-end, touching all major components of the app.</p>
 </div>
-<div class="sect3">
-<h4 id="description"><a class="link" href="#description">A.2.1. Description</a></h4>
 <div class="paragraph">
-<p>Edits the remark for a person specified in the <code>INDEX</code>.<br>
+<p>==== Description
+Edits the remark for a person specified in the <code>INDEX</code>.<br>
 Format: <code>remark INDEX r/[REMARK]</code></p>
 </div>
 <div class="paragraph">
@@ -1739,13 +1783,12 @@ Removes the remark for the first person.</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect3">
-<h4 id="step-by-step-instructions"><a class="link" href="#step-by-step-instructions">A.2.2. Step-by-step Instructions</a></h4>
-<div class="sect4">
-<h5 id="step-1-logic-teach-the-app-to-accept-remark-which-does-nothing"><a class="link" href="#step-1-logic-teach-the-app-to-accept-remark-which-does-nothing">[Step 1] Logic: Teach the App to Accept 'remark' which Does Nothing</a></h5>
 <div class="paragraph">
-<p>Let&#8217;s start by teaching the application how to parse a <code>remark</code> command. We will add the logic of <code>remark</code> later.</p>
+<p>==== Step-by-step Instructions</p>
+</div>
+<div class="paragraph">
+<p>===== [Step 1] Logic: Teach the App to Accept 'remark' which Does Nothing
+Let&#8217;s start by teaching the application how to parse a <code>remark</code> command. We will add the logic of <code>remark</code> later.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -1773,11 +1816,9 @@ Removes the remark for the first person.</p>
 </li>
 </ol>
 </div>
-</div>
-<div class="sect4">
-<h5 id="step-2-logic-teach-the-app-to-accept-remark-arguments"><a class="link" href="#step-2-logic-teach-the-app-to-accept-remark-arguments">[Step 2] Logic: Teach the App to Accept 'remark' Arguments</a></h5>
 <div class="paragraph">
-<p>Let&#8217;s teach the application to parse arguments that our <code>remark</code> command will accept. E.g. <code>1 r/Likes to drink coffee.</code></p>
+<p>===== [Step 2] Logic: Teach the App to Accept 'remark' Arguments
+Let&#8217;s teach the application to parse arguments that our <code>remark</code> command will accept. E.g. <code>1 r/Likes to drink coffee.</code></p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -1812,11 +1853,9 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ol>
 </div>
-</div>
-<div class="sect4">
-<h5 id="step-3-ui-add-a-placeholder-for-remark-in-code-personcard-code"><a class="link" href="#step-3-ui-add-a-placeholder-for-remark-in-code-personcard-code">[Step 3] Ui: Add a Placeholder for Remark in <code>PersonCard</code></a></h5>
 <div class="paragraph">
-<p>Let&#8217;s add a placeholder on all our <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> s to display a remark for each person later.</p>
+<p>===== [Step 3] Ui: Add a Placeholder for Remark in <code>PersonCard</code>
+Let&#8217;s add a placeholder on all our <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> s to display a remark for each person later.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -1841,11 +1880,9 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ol>
 </div>
-</div>
-<div class="sect4">
-<h5 id="step-4-model-add-code-remark-code-class"><a class="link" href="#step-4-model-add-code-remark-code-class">[Step 4] Model: Add <code>Remark</code> Class</a></h5>
 <div class="paragraph">
-<p>We have to properly encapsulate the remark in our <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a> class. Instead of just using a <code>String</code>, let&#8217;s follow the conventional class structure that the codebase already uses by adding a <code>Remark</code> class.</p>
+<p>===== [Step 4] Model: Add <code>Remark</code> Class
+We have to properly encapsulate the remark in our <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a> class. Instead of just using a <code>String</code>, let&#8217;s follow the conventional class structure that the codebase already uses by adding a <code>Remark</code> class.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -1870,11 +1907,9 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ol>
 </div>
-</div>
-<div class="sect4">
-<h5 id="step-5-model-modify-code-readonlyperson-code-to-support-a-code-remark-code-field"><a class="link" href="#step-5-model-modify-code-readonlyperson-code-to-support-a-code-remark-code-field">[Step 5] Model: Modify <code>ReadOnlyPerson</code> to Support a <code>Remark</code> Field</a></h5>
 <div class="paragraph">
-<p>Now we have the <code>Remark</code> class, we need to actually use it inside <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a>.</p>
+<p>===== [Step 5] Model: Modify <code>ReadOnlyPerson</code> to Support a <code>Remark</code> Field
+Now we have the <code>Remark</code> class, we need to actually use it inside <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a>.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -1892,11 +1927,9 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ol>
 </div>
-</div>
-<div class="sect4">
-<h5 id="step-6-storage-add-code-remark-code-field-to-code-xmladaptedperson-code-class"><a class="link" href="#step-6-storage-add-code-remark-code-field-to-code-xmladaptedperson-code-class">[Step 6] Storage: Add <code>Remark</code> Field to <code>XmlAdaptedPerson</code> Class</a></h5>
 <div class="paragraph">
-<p>We now have <code>Remark</code> s for <code>Person</code> s, but they will be gone when we exit the application. Let&#8217;s modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/storage/XmlAdaptedPerson.java"><code>XmlAdaptedPerson</code></a> to include a <code>Remark</code> field so that it will be saved.</p>
+<p>===== [Step 6] Storage: Add <code>Remark</code> Field to <code>XmlAdaptedPerson</code> Class
+We now have <code>Remark</code> s for <code>Person</code> s, but they will be gone when we exit the application. Let&#8217;s modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/storage/XmlAdaptedPerson.java"><code>XmlAdaptedPerson</code></a> to include a <code>Remark</code> field so that it will be saved.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -1921,11 +1954,9 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ol>
 </div>
-</div>
-<div class="sect4">
-<h5 id="step-7-ui-connect-code-remark-code-field-to-code-personcard-code"><a class="link" href="#step-7-ui-connect-code-remark-code-field-to-code-personcard-code">[Step 7] Ui: Connect <code>Remark</code> Field to <code>PersonCard</code></a></h5>
 <div class="paragraph">
-<p>Our remark label in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> is still a placeholder. Let&#8217;s bring it to life by binding it with the actual <code>remark</code> field.</p>
+<p>===== [Step 7] Ui: Connect <code>Remark</code> Field to <code>PersonCard</code>
+Our remark label in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> is still a placeholder. Let&#8217;s bring it to life by binding it with the actual <code>remark</code> field.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -1950,11 +1981,9 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ol>
 </div>
-</div>
-<div class="sect4">
-<h5 id="step-8-logic-implement-code-remarkcommand-execute-code-logic"><a class="link" href="#step-8-logic-implement-code-remarkcommand-execute-code-logic">[Step 8] Logic: Implement <code>RemarkCommand#execute()</code> Logic</a></h5>
 <div class="paragraph">
-<p>We now have everything set up&#8230;&#8203; but we still can&#8217;t modify the remarks. Let&#8217;s finish it up by adding in actual logic for our <code>remark</code> command.</p>
+<p>===== [Step 8] Logic: Implement <code>RemarkCommand#execute()</code> Logic
+We now have everything set up&#8230;&#8203; but we still can&#8217;t modify the remarks. Let&#8217;s finish it up by adding in actual logic for our <code>remark</code> command.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -1976,20 +2005,15 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>==== Full Solution</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="full-solution"><a class="link" href="#full-solution">A.2.3. Full Solution</a></h4>
 <div class="paragraph">
 <p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/599">PR</a> for the step-by-step solution.</p>
 </div>
+<div class="paragraph">
+<p>== User Stories</p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="user-stories"><a class="link" href="#user-stories">Appendix B: User Stories</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p><strong>User Profile:</strong> John is an undergraduate student in a local university. He has an active social life with many friend circles.
 John wants a way to manage his contacts and a way to remind him tasks and responsibilities in related to these contacts.</p>
@@ -2054,6 +2078,12 @@ John wants a way to manage his contacts and a way to remind him tasks and respon
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">add birthday information</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">remember and keep track of my family members/friends birthday</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">favorite a person</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track of the person I&#8217;m interested in recently.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
@@ -2126,11 +2156,9 @@ John wants a way to manage his contacts and a way to remind him tasks and respon
 <div class="paragraph">
 <p>{More to be added}</p>
 </div>
+<div class="paragraph">
+<p>== Use Cases</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is the <code>AddressBook</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
@@ -2377,11 +2405,9 @@ John wants a way to manage his contacts and a way to remind him tasks and respon
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>== Non Functional Requirements</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></h2>
-<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2398,11 +2424,9 @@ John wants a way to manage his contacts and a way to remind him tasks and respon
 <div class="paragraph">
 <p>{More to be added}</p>
 </div>
+<div class="paragraph">
+<p>== Glossary</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="glossary"><a class="link" href="#glossary">Appendix E: Glossary</a></h2>
-<div class="sectionbody">
 <div id="mainstream-os" class="paragraph">
 <p>Mainstream OS</p>
 </div>
@@ -2422,9 +2446,13 @@ John wants a way to manage his contacts and a way to remind him tasks and respon
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
+</div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 02:45:06 +00:00
+Last updated 2017-11-13 04:34:16 +00:00
 </div>
 </div>
 </body>
