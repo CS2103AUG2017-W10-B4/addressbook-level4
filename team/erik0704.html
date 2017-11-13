@@ -91,11 +91,25 @@ Returns all persons with both <code>friend</code> and <code>CS2103T</code> tag.<
 </div>
 <div class="sect3">
 <h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
 <div class="paragraph">
-<p>Tag component in model already had API method for searching, but unused. Implementation is similar to <code>find</code> command
-but instead of interacting with <code>Name</code> component and its predicate we interact with <code>Tag</code> and its predicate.</p>
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="findtag-command"><a class="link" href="#findtag-command">FindTag Command</a></h3>
+<div class="paragraph">
+<p>The findTag command utilize the same implementation as the Find command for name. Instead of logic execute search via <code>Name</code> attribute of Person, the command search in the <code>TagList</code> attribute.</p>
+</div>
+<div class="paragraph">
+<p>Tag component in model already had API methods for searching, which is similar to <code>Name</code> which allows extracting value of the object.
+The search algorithm utilize a class <code>TagContainsKeywordsPredicate implements Predicate&lt;ReadOnlyPerson&gt;</code> which allows the algorithm to use Java <code>Predicate</code> class method.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
 </div>
 <div class="sect2">
 <h3 id="enhancement-added-locate-a-person"><a class="link" href="#enhancement-added-locate-a-person">Enhancement Added: Locate a person</a></h3>
@@ -261,12 +275,37 @@ Deletes the 2nd listed event in the address book.</p>
 </div>
 <div class="sect3">
 <h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
+<hr>
 <div class="paragraph">
-<p>Overall behavior is similar to Person class logic and model.
-Auto-reminder is done by filtering events whose date is same as the current date, and adding a GUI popup panel section
-to display it similar to the <code>HelpWindow</code>. These steps are automatically initialized at the application start.</p>
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="task-event-management"><a class="link" href="#task-event-management">(Task) event management</a></h3>
+<div class="paragraph">
+<p>The model for task event is implemented similar to <code>person</code> class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EventModelClassDiagram.png" alt="EventModelClassDiagram" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>EventList</code> is then linked up to the <code>AddressBook</code> which is monitored by <code>ModelManager</code> to reflect any change to the <code>Addressbook</code> model.
+The Ui components <code>EventCard</code> and <code>EventListPanel</code> are also hooked up to the model and reflect any changes made to <code>filterEvents</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="event-auto-reminder"><a class="link" href="#event-auto-reminder">Event auto-reminder</a></h3>
+<div class="paragraph">
+<p>When the <code>UiManager</code> component got initialized at the start of the application, a new <code>ShowReminderRequestEvent</code> gets posted.
+This is then handle by the <code>MainWindow</code> which initialized one or more <code>ReminderWindow</code> from the <code>upcomingEvents</code> in the model.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
 </div>
 <div class="sect2">
 <h3 id="enhancement-added-change-application-css-theme"><a class="link" href="#enhancement-added-change-application-css-theme">Enhancement Added: Change application css theme</a></h3>
@@ -304,7 +343,7 @@ to display it similar to the <code>HelpWindow</code>. These steps are automatica
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 01:15:36 +00:00
+Last updated 2017-11-13 02:19:58 +00:00
 </div>
 </div>
 </body>
