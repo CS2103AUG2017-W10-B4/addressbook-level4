@@ -367,12 +367,12 @@ The implementation of <code>delete</code> contains 2 classes: <code>DeleteComman
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">DeleteListCommandParser</span> <span class="directive">implements</span> <span class="predefined-type">Parser</span>&lt;DeleteListCommand&gt; {
-    <span class="directive">public</span> DeleteListCommand parse(<span class="predefined-type">String</span> args) <span class="directive">throws</span> <span class="exception">ParseException</span> {
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">DeleteCommandParser</span> <span class="directive">implements</span> <span class="predefined-type">Parser</span>&lt;DeleteCommand&gt; {
+    <span class="directive">public</span> DeleteCommand parse(<span class="predefined-type">String</span> args) <span class="directive">throws</span> <span class="exception">ParseException</span> {
         <span class="keyword">try</span> {
             <span class="predefined-type">List</span>&lt;Index&gt; input= <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;Index&gt;();
             <span class="comment">// ... Parser logic ...</span>
-            <span class="keyword">return</span> <span class="keyword">new</span> DeleteListCommand(input);
+            <span class="keyword">return</span> <span class="keyword">new</span> DeleteCommand(input);
         } <span class="keyword">catch</span> (IllegalValueException ive) {
             <span class="comment">// throw exception here</span>
         }
@@ -662,10 +662,10 @@ The <code>required</code> parameter of <code>@XmlElement</code> element which st
 <div class="ulist">
 <ul>
 <li>
-<p>Fix bugs due to merge conflicts for team (Pull requests <a href="https://github.com/CS2103AUG2017-W10-B4/main/pull/70" class="bare">https://github.com/CS2103AUG2017-W10-B4/main/pull/70</a>, <a href="https://github.com/CS2103AUG2017-W10-B4/main/pull/45" class="bare">https://github.com/CS2103AUG2017-W10-B4/main/pull/45</a>)</p>
+<p>Fix bugs due to merge conflicts for team (Pull requests <a href="https://github.com/CS2103AUG2017-W10-B4/main/pull/70">#70</a>, <a href="https://github.com/CS2103AUG2017-W10-B4/main/pull/45">#45</a>)</p>
 </li>
 <li>
-<p>Write additional tests to increase coverage by 1.4% (Pull requests <a href="https://github.com/CS2103AUG2017-W10-B4/main/pull/89" class="bare">https://github.com/CS2103AUG2017-W10-B4/main/pull/89</a>, <a href="https://github.com/CS2103AUG2017-W10-B4/main/pull/99" class="bare">https://github.com/CS2103AUG2017-W10-B4/main/pull/99</a>)</p>
+<p>Write additional tests to increase coverage by 1.4% (Pull requests <a href="https://github.com/CS2103AUG2017-W10-B4/main/pull/89">#89</a>, <a href="https://github.com/CS2103AUG2017-W10-B4/main/pull/99">#99</a>)</p>
 </li>
 </ul>
 </div>
@@ -683,7 +683,7 @@ The <code>required</code> parameter of <code>@XmlElement</code> element which st
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 04:34:16 +00:00
+Last updated 2017-11-13 04:35:02 +00:00
 </div>
 </div>
 </body>
