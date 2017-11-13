@@ -60,10 +60,9 @@
 <li><a href="#task-event-management">4.7. (Task) event management</a></li>
 <li><a href="#event-auto-reminder">4.8. Event auto-reminder</a></li>
 <li><a href="#coming-birthday-list">4.9. Coming Birthday List</a></li>
-<li><a href="#favoriting-a-person-using-favoritecommand">4.10. Favoriting a person using FavoriteCommand.</a></li>
-<li><a href="#unfavoriting-a-person-using-unfavoritecommand">4.11. Unfavoriting a person using UnfavoriteCommand.</a></li>
-<li><a href="#export-command">4.12. Export Command</a></li>
-<li><a href="#configuration">4.13. Configuration</a></li>
+<li><a href="#favorite-unfavorite-a-person-using-favoritecommand">4.10. Favorite/Unfavorite a person using FavoriteCommand.</a></li>
+<li><a href="#export-command">4.11. Export Command</a></li>
+<li><a href="#configuration">4.12. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -1101,13 +1100,9 @@ for the list in the main window UI. MainWindow.fxml should modified accordingly 
 </div>
 </div>
 <div class="sect2">
-<h3 id="favoriting-a-person-using-favoritecommand"><a class="link" href="#favoriting-a-person-using-favoritecommand">4.10. Favoriting a person using FavoriteCommand.</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="unfavoriting-a-person-using-unfavoritecommand"><a class="link" href="#unfavoriting-a-person-using-unfavoritecommand">4.11. Unfavoriting a person using UnfavoriteCommand.</a></h3>
+<h3 id="favorite-unfavorite-a-person-using-favoritecommand"><a class="link" href="#favorite-unfavorite-a-person-using-favoritecommand">4.10. Favorite/Unfavorite a person using FavoriteCommand.</a></h3>
 <div class="sect3">
-<h4 id="favoritecommand-unfavorite-command"><a class="link" href="#favoritecommand-unfavorite-command">4.11.1. FavoriteCommand/Unfavorite Command</a></h4>
+<h4 id="favoritecommand-unfavorite-command"><a class="link" href="#favoritecommand-unfavorite-command">4.10.1. FavoriteCommand/Unfavorite Command</a></h4>
 <div class="paragraph">
 <p>To Favorite/Unfavorite a person, UI, Logic, Model and Storage components are to be modified
 accordingly.<br>
@@ -1176,7 +1171,7 @@ information of a person in xml format.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="listfavoritecommand"><a class="link" href="#listfavoritecommand">4.11.2. ListFavoriteCommand</a></h4>
+<h4 id="listfavoritecommand"><a class="link" href="#listfavoritecommand">4.10.2. ListFavoriteCommand</a></h4>
 <div class="paragraph">
 <p>To list all your favorite persons in AddressBook, UI, Model, and Logic Components are involved.
 Logic Component includes <code>ListFavoriteCommand</code> and <code>ListFavoriteCommandParser</code>, and they call <code>FavoritePredicate</code> in Model Component
@@ -1185,7 +1180,7 @@ to check whether a person is favorited or not, UI component then decide which pe
 </div>
 </div>
 <div class="sect2">
-<h3 id="export-command"><a class="link" href="#export-command">4.12. Export Command</a></h3>
+<h3 id="export-command"><a class="link" href="#export-command">4.11. Export Command</a></h3>
 <div class="paragraph">
 <p><code>export</code> access the file <code>addressbook.xml</code> to retrieve each person and his/her properties and write it on the file at the specified input.
 Its implementation contains 2 classes: <code>ExportCommand</code> and <code>ExportCommandParser</code>.<br>
@@ -1194,7 +1189,7 @@ The parser <code>ExportCommandParser</code> of <code>export</code> parses the fi
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">4.13. Configuration</a></h3>
+<h3 id="configuration"><a class="link" href="#configuration">4.12. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2510,7 +2505,7 @@ John wants a way to manage his contacts and a way to remind him tasks and respon
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 04:46:08 +00:00
+Last updated 2017-11-13 04:56:20 +00:00
 </div>
 </div>
 </body>
