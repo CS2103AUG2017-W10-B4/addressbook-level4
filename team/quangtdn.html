@@ -66,14 +66,27 @@ Format: <code>phone NUMBER [MORE_NUMBERS]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>phone 123</code><br>
-Returns persons with phone numbers containing 123</p>
+<p><code>phone 92</code><br>
+Returns persons with phone numbers containing 92.</p>
 </li>
 <li>
-<p><code>phone 123 65</code><br>
-Returns persons with phone numbers containing <code>123</code> or <code>65</code>.</p>
+<p><code>phone 92 65</code><br>
+Returns persons with phone numbers containing <code>92</code> or <code>283</code>.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>The second example is illustrated below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/findPhone1.png" alt="findPhone1" width="690">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/findPhone2.png" alt="findPhone2" width="690">
+</div>
 </div>
 <div class="paragraph">
 <p>Finds person whose phone numbers partially match with at least a phone number in the specified list
@@ -120,8 +133,15 @@ Format: <code>phone NUMBER [MORE_NUMBERS]</code></p>
 <p>The <code>phone</code> command utilize the same implementation as the <code>Find</code> command for name. Instead of logic execute search via <code>Name</code> attribute of <code>Person</code>, the command search for the <code>phone</code> attribute.</p>
 </div>
 <div class="paragraph">
-<p><code>Name</code> and <code>Phone</code> API structure is roughly similar that they allow to extract value of the object. The search algorithm utilizes a class <code>NameContainsPhonesPredicate implements Predicate&lt;ReadOnlyPerson&gt;</code>
-which allows the algorithm to use Java <code>Predicate</code> class method.</p>
+<p>The <code>phone</code> command is handled by the class <code>FindPhoneCommand</code> that inherits from <code>Command</code> class.<br>
+<code>Name</code> and <code>Phone</code> API structure is roughly similar that they allow to extract value of the object. The search algorithm utilizes a class <code>NameContainsPhonesPredicate implements Predicate&lt;ReadOnlyPerson&gt;</code>
+which allows the algorithm to use Java <code>Predicate</code> class method.<br>
+The diagram demonstrating <code>phone</code> command structure is illustrated here:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/findPhone.png" alt="findPhone" width="300">
+</div>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -360,8 +380,15 @@ Deletes the 1st person in the results of the <code>find</code> command.</p>
 <div class="sect2">
 <h3 id="delete-command"><a class="link" href="#delete-command">Delete command</a></h3>
 <div class="paragraph">
-<p><code>delete</code> command supports modifying the state of address book by deleting all persons whose indices are specified in the input. It inherits from <code>UndoableCommand</code>.
-The implementation of <code>delete</code> contains 2 classes: <code>DeleteCommand</code> and <code>DeleteCommandParser</code> inside the logic component.<br>
+<p><code>delete</code> command supports modifying the state of address book by deleting all persons whose indices are specified in the input. It inherits from <code>UndoableCommand</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/delete.png" alt="delete" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p>The implementation of <code>delete</code> contains 2 classes: <code>DeleteCommand</code> and <code>DeleteCommandParser</code> inside the logic component.<br>
 <code>DeleteCommandParser</code>, the parser of <code>delete</code>, parses user&#8217;s input into the variable <code>input: List&lt;Index&gt;</code> that store a list of <code>Index</code>.
 <code>DeleteCommand</code>, which handles the logic of <code>delete</code> command, then iteratively remove any <code>Person</code> object with <code>Index</code> specified in <code>input</code>.</p>
 </div>
@@ -522,7 +549,7 @@ Format: <code>select INDEX</code></p>
 <p><code>list</code><br>
 <code>select 2</code><br>
 Selects the 2nd person in the address book.<br>
-The 2nd person in the list has the profile page "www.facebook.com"<br></p>
+The 2nd person in the list has the profile page "twitter.com/davidlee"<br></p>
 </li>
 </ul>
 </div>
@@ -672,18 +699,10 @@ The <code>required</code> parameter of <code>@XmlElement</code> element which st
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">Project: PowerPointLabs</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>{Optionally (not graded), you may include other projects in your portfolio.}</p>
-</div>
-</div>
-</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 05:55:31 +00:00
+Last updated 2017-11-13 10:41:26 +00:00
 </div>
 </div>
 </body>
