@@ -6,7 +6,7 @@ ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 == Project: NeoXPro Manager
 NeoXPro is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.
 
-*Code contributed*: [https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/main/yanji1221.md[Functional code]] [https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/test/quangtdn.md[Test code]] [https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/unused/quangtdn.md[Unused code]] {give links to collated code files}
+*Code contributed*: [https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/main/quangtdn.md[Functional code]] [https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/test/quangtdn.md[Test code]] [https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/unused/quangtdn.md[Unused code]]
 
 === Enhancement Added: `phone`
 
@@ -18,22 +18,14 @@ Locating persons by phone number.
 
 include::../UserGuide.adoc[tag=phone]
 
-Finds person whose phone numbers partially match with at least a phone number in the specified list
-Format: `phone NUMBER [MORE_NUMBERS]`
-
-****
-* The order of numbers being queried does not matter.
-* Only the phone number is searched.
-* Partial numbers will be matched e.b. '12345' will match '123456'
-****
-
 #End of Extract#
 
 ---
 
 ==== Justification
 
-Searching a contact by phone number is extremely convenient for searching a person in NeoXPro when searching a contact by name is inefficient in a large contact list.
+Searching a contact by partial chain of number is a convenient and efficient feature especially when user has to deal with a large contact list. +
+For example, a user Michael wants to search for his best friend John Cena in NeoXPro. Unfortunately there are 6 contacts with the same name John Cena stored in NeoXPro so using `find` command confuses Michael a lot with 6 output contacts. However, using `phone` command, Michael can directly search for his best friend immediately via his phone.
 
 ==== Implementation
 
@@ -118,6 +110,12 @@ include::../UserGuide.adoc[tag=export]
 
 #End of Extract#
 
+The UI of NeoXPro and the result exported file after the execution of command `export contactFile` are illustrated below:
+
+image::export1.png[width="690"]
+
+image::export2.png[width="690"]
+
 ---
 
 ==== Justification
@@ -156,11 +154,25 @@ Let users easily access social media and improve experience. Employers can also 
 ==== Implementation
 
 ---
-#Start of Extract [from: Developer Guide]#
+In order to make `select` command load a person's `ProfilePage` object if it exists, we modify method `handlePersonPanelSelectionChangedEvent()` in `BrowserPanel` that is in charge of updating a person panel: +
+[source, java]
+----
+ private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
+     //...load `person` from the `select` command...
+     if (person.getProfilePage().hasProfilePage()) {
+         loadProfilePage(person);
+     } else {
+         loadPersonPage(person);
+     }
+ }
+ //...
+ private void loadProfilePage(ReadOnlyPerson person) {
+      //This method load the profile page of the in
+      loadPage("https://" + person.getProfilePage().toString());
+  }
+----
 
-include::../DeveloperGuide.adoc[tag=addprofile]
-
-#End of Extract#
+The method `loadProfilePage(ReadOnlyPerson person)` is implemented to load the profile page of the input `person`.
 
 ---
 === Other contributions
