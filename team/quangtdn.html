@@ -16,13 +16,13 @@
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="project-addressbook-level-4"><a class="link" href="#project-addressbook-level-4">Project: AddressBook - Level 4</a></h2>
+<h2 id="project-neoxpro-manager"><a class="link" href="#project-neoxpro-manager">Project: NeoXPro Manager</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>AddressBook - Level 4 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.</p>
+<p>NeoXPro is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.</p>
 </div>
 <div class="paragraph">
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] {give links to collated code files}</p>
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/main/yanji1221.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/test/quangtdn.md">Test code</a>] [<a href="https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/unused/quangtdn.md">Unused code</a>] {give links to collated code files}</p>
 </div>
 <div class="sect2">
 <h3 id="enhancement-added-code-phone-code"><a class="link" href="#enhancement-added-code-phone-code">Enhancement Added: <code>phone</code></a></h3>
@@ -40,7 +40,7 @@
 <div class="sect2">
 <h3 id="locating-persons-by-phone-number-code-phone-code-since-v1-1"><a class="link" href="#locating-persons-by-phone-number-code-phone-code-since-v1-1">Locating persons by phone number: <code>phone</code> (since v1.1)</a></h3>
 <div class="paragraph">
-<p>Finds person whose phone numbers match with at least a phone number in the specified list // Note that we plan to add multiple phone numbers to a person<br>
+<p>Finds person whose phone numbers partially match with a number in the specified list<br>
 Format: <code>phone NUMBER [MORE_NUMBERS]</code></p>
 </div>
 <div class="sidebarblock">
@@ -48,13 +48,13 @@ Format: <code>phone NUMBER [MORE_NUMBERS]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>The order of phone numbers being queried does not matter.</p>
+<p>The order of numbers being queried does not matter.</p>
 </li>
 <li>
 <p>Only the phone number is searched.</p>
 </li>
 <li>
-<p>Only full numbers will be matched e.g. <code>12345</code> will not match <code>123456</code> // can be modifed latter to match a chain of partial number</p>
+<p>Partial string number will be matched with phones  e.g. <code>12345</code> will match <code>123456</code></p>
 </li>
 </ul>
 </div>
@@ -66,17 +66,17 @@ Format: <code>phone NUMBER [MORE_NUMBERS]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>phone 123456</code><br>
-Returns person with phone number 123456</p>
+<p><code>phone 123</code><br>
+Returns persons with phone numbers containing 123</p>
 </li>
 <li>
-<p><code>phone 123456 654321</code><br>
-Returns persons with phone numbers matching with <code>123456</code> or <code>654321</code>.</p>
+<p><code>phone 123 65</code><br>
+Returns persons with phone numbers containing <code>123</code> or <code>65</code>.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Finds person whose phone numbers match with at least a phone number in the specified list
+<p>Finds person whose phone numbers partially match with at least a phone number in the specified list
 Format: <code>phone NUMBER [MORE_NUMBERS]</code></p>
 </div>
 <div class="sidebarblock">
@@ -84,13 +84,13 @@ Format: <code>phone NUMBER [MORE_NUMBERS]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>The order of phone numbers being queried does not matter.</p>
+<p>The order of numbers being queried does not matter.</p>
 </li>
 <li>
 <p>Only the phone number is searched.</p>
 </li>
 <li>
-<p>Only full numbers will be matched e.b. '12345' will not match '123456' // can be modifed latter to match a chain of partial number</p>
+<p>Partial numbers will be matched e.b. '12345' will match '123456'</p>
 </li>
 </ul>
 </div>
@@ -103,7 +103,7 @@ Format: <code>phone NUMBER [MORE_NUMBERS]</code></p>
 <div class="sect3">
 <h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
 <div class="paragraph">
-<p>Searching a contact by phone number is extremely convenient for searching a person in NeoXPRO when searching a contact by name is inefficient in a large contact list.</p>
+<p>Searching a contact by phone number is extremely convenient for searching a person in NeoXPro when searching a contact by name is inefficient in a large contact list.</p>
 </div>
 </div>
 <div class="sect3">
@@ -112,11 +112,21 @@ Format: <code>phone NUMBER [MORE_NUMBERS]</code></p>
 <div class="paragraph">
 <p><mark>Start of Extract [from: Developer Guide]</mark></p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="phone-command"><a class="link" href="#phone-command">phone command</a></h3>
+<div class="paragraph">
+<p>The <code>phone</code> command utilize the same implementation as the <code>Find</code> command for name. Instead of logic execute search via <code>Name</code> attribute of <code>Person</code>, the command search for the <code>phone</code> attribute.</p>
+</div>
+<div class="paragraph">
+<p><code>Name</code> and <code>Phone</code> API structure is roughly similar that they allow to extract value of the object. The search algorithm utilizes a class <code>NameContainsPhonesPredicate implements Predicate&lt;ReadOnlyPerson&gt;</code>
+which allows the algorithm to use Java <code>Predicate</code> class method.</p>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
 <hr>
-</div>
 </div>
 <div class="sect2">
 <h3 id="enhancement-added-profile-page"><a class="link" href="#enhancement-added-profile-page">Enhancement Added: Profile Page</a></h3>
@@ -181,6 +191,95 @@ All fields are optional except the person name.
 <div class="paragraph">
 <p><mark>Start of Extract [from: Developer Guide]</mark></p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="add-profile-page"><a class="link" href="#add-profile-page">Add Profile Page</a></h4>
+<div class="paragraph">
+<p>The profile page parameter is facilitated by the class <code>ProfilePage</code>.<br>
+In order to add this parameter profile page, we make modifications to UI, Logic, Model and Storage components.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>UI Component:</code><br>
+<code>PersonCard</code>, which resides in UI component, frist creates a label for profile page parameter:<br></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>@FXML
+    private Label profile;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then <code>PersonCard</code> binds the label with the value of <code>ProfilePage</code> object. If the input value for <code>ProfilePage</code> object is null, it make the label dissapear from UI by setting its visibility to FALSE:<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> bindListeners(ReadOnlyPerson person) {
+    <span class="comment">//... binding other labels ...</span>
+
+    <span class="keyword">if</span> (!person.profilepageProperty().toString().equals(<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>)) {
+        profile.textProperty().bind(Bindings.convert(person.profilepageProperty()));
+        profile.setVisible(<span class="predefined-constant">true</span>);
+    } <span class="keyword">else</span> {
+        profile.setVisible(<span class="predefined-constant">false</span>);
+    }
+    <span class="comment">//... binding other labels ...</span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In order to make <code>select</code> command load a person&#8217;s <code>ProfilePage</code> object if it exists, we modify method <code>handlePersonPanelSelectionChangedEvent()</code> in <code>BrowserPanel</code> that is in charge of updating a person panel:<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"> <span class="directive">private</span> <span class="type">void</span> handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
+     <span class="comment">//...</span>
+     <span class="keyword">if</span> (person.getProfilePage().hasProfilePage()) {
+         loadProfilePage(person);
+     } <span class="keyword">else</span> {
+         loadPersonPage(person);
+     }
+ }</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Logic Component:</code><br>
+The prefix for profile page <code>pr/</code> is added to <code>CliSyntax</code>. Then the following files <code>AddCommand</code>, <code>EditCommand</code>, <code>AddCommandParser</code> and <code>EditCommandParser</code> are modified so that <code>add</code> and <code>edit</code> commands accept the new parameter profile page.<br>
+<code>AddCommandParser</code> does not check for profile page prefix <code>pr/</code> as this is an optional parameter.</p>
+</li>
+<li>
+<p><code>Model Component:</code><br>
+Class <code>ProfilePage</code> is used to store profile page property of class <code>Person</code>. Class <code>Person</code>, which resides in model component and implements <code>ReadOnlyPerson</code> interface, form a composition association with <code>ProfilePage</code> .<br>
+As profile page is an optional parameter, a <code>Person</code> can be linked to 0 or 1 <code>ProfilePage</code> object.<br>
+The relationship is illustrated in the following diagram:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/profilePage.png" alt="profilePage" width="300">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Storage Component:</code><br>
+<code>xmlAdaptedPerson</code> file is used to save information of a person in xml format.<br>
+The <code>required</code> parameter of <code>@XmlElement</code> element which stores profile page information is set to false to make this property optional:<br></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>@XmlElement(required = false)
+    private String profile = "";</pre>
+</div>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
@@ -203,15 +302,15 @@ All fields are optional except the person name.
 <div class="sect2">
 <h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">Deleting a person : <code>delete</code></a></h3>
 <div class="paragraph">
-<p>Deletes the specified person from the address book.<br>
-Format: <code>delete INDEX</code></p>
+<p>Deletes a list of specified persons from the address book.<br>
+Format: <code>delete INDEX [MORE_INDICES]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Deletes the person at the specified <code>INDEX</code>.</p>
+<p>Deletes the persons at the specified `INDEX&#8217;s.</p>
 </li>
 <li>
 <p>The index refers to the index number shown in the most recent listing.</p>
@@ -230,8 +329,8 @@ Format: <code>delete INDEX</code></p>
 <ul>
 <li>
 <p><code>list</code><br>
-<code>delete 2</code><br>
-Deletes the 2nd person in the address book.</p>
+<code>delete 2 1</code><br>
+Deletes the 1st and 2nd person in the address book.</p>
 </li>
 <li>
 <p><code>find Betsy</code><br>
@@ -247,7 +346,7 @@ Deletes the 1st person in the results of the <code>find</code> command.</p>
 <div class="sect3">
 <h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
 <div class="paragraph">
-<p>{Justify the need for, and the current design (i.e. external behavior) of, the feature}</p>
+<p>Users now don&#8217;t have to manually delete each contact at a time.</p>
 </div>
 </div>
 <div class="sect3">
@@ -256,11 +355,38 @@ Deletes the 1st person in the results of the <code>find</code> command.</p>
 <div class="paragraph">
 <p><mark>Start of Extract [from: Developer Guide]</mark></p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="delete-command"><a class="link" href="#delete-command">Delete command</a></h3>
+<div class="paragraph">
+<p><code>delete</code> command supports modifying the state of address book by deleting all persons whose indices are specified in the input. It inherits from <code>UndoableCommand</code>.
+The implementation of <code>delete</code> contains 2 classes: <code>DeleteCommand</code> and <code>DeleteCommandParser</code> inside the logic component.<br>
+<code>DeleteCommandParser</code>, the parser of <code>delete</code>, parses user&#8217;s input into the variable <code>input: List&lt;Index&gt;</code> that store a list of <code>Index</code>.
+<code>DeleteCommand</code>, which handles the logic of <code>delete</code> command, then iteratively remove any <code>Person</code> object with <code>Index</code> specified in <code>input</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">DeleteListCommandParser</span> <span class="directive">implements</span> <span class="predefined-type">Parser</span>&lt;DeleteListCommand&gt; {
+    <span class="directive">public</span> DeleteListCommand parse(<span class="predefined-type">String</span> args) <span class="directive">throws</span> <span class="exception">ParseException</span> {
+        <span class="keyword">try</span> {
+            <span class="predefined-type">List</span>&lt;Index&gt; input= <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;Index&gt;();
+            <span class="comment">// ... Parser logic ...</span>
+            <span class="keyword">return</span> <span class="keyword">new</span> DeleteListCommand(input);
+        } <span class="keyword">catch</span> (IllegalValueException ive) {
+            <span class="comment">// throw exception here</span>
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And finally, we add the <code>delete</code> command to the class 'AddressBookParser' so that <code>delete</code> command is recognized whenever invoked.</p>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
 <hr>
-</div>
 </div>
 <div class="sect2">
 <h3 id="enhancement-added-code-export-code"><a class="link" href="#enhancement-added-code-export-code">Enhancement Added: <code>export</code></a></h3>
@@ -278,8 +404,44 @@ Deletes the 1st person in the results of the <code>find</code> command.</p>
 <div class="sect2">
 <h3 id="exporting-the-data-code-export-code"><a class="link" href="#exporting-the-data-code-export-code">Exporting the data: <code>export</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>export</code>
-Address book data are exported</p>
+<p>Address book data is exported in text form to the input file path.
+Format: <code>export [File_Path]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The [File_Path] must contain the file name of the exported file. E.g. <code>export c:\documents and settings\all users\desktop\exportedData</code></p>
+</li>
+<li>
+<p>The [File_Path] can be just the file name of the exported file instead of the file path. In this case, <code>export</code> command will export the file [File_Path] to the current directory.</p>
+</li>
+<li>
+<p>The [File_Path] can be blank. In this case, <code>export</code> command will export the file with default name "exportFile.txt" to the current directory.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>export c:\documents and settings\all users\desktop\exportedData</code><br>
+Exports the file "exportedData" to the specified path.</p>
+</li>
+<li>
+<p><code>export exportedData</code><br>
+Exports the file "exportedData" to the current directory of NeoXPro.</p>
+</li>
+<li>
+<p><code>export</code><br>
+Exports the file "exportFile.txt" to the current directory of NeoXPro.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -297,11 +459,20 @@ Address book data are exported</p>
 <div class="paragraph">
 <p><mark>Start of Extract [from: Developer Guide]</mark></p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="export-command"><a class="link" href="#export-command">export Command</a></h3>
+<div class="paragraph">
+<p><code>export</code> access the file <code>addressbook.xml</code> to retrieve each person and his/her properties and write it on the file at the specified input.
+Its implementation contains 2 classes: <code>ExportCommand</code> and <code>ExportCommandParser</code>.<br>
+The parser <code>ExportCommandParser</code> of <code>export</code> parses the file path input as a <code>String</code> to <code>ExportCommand</code>.<br>
+<code>ExportCommand</code>, which handles the logic of <code>export</code> command, then writes the exported file on the specified input file path.</p>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
 <hr>
-</div>
 </div>
 <div class="sect2">
 <h3 id="enhancement-added-improve-code-select-code-command"><a class="link" href="#enhancement-added-improve-code-select-code-command">Enhancement Added: Improve <code>Select</code> command</a></h3>
@@ -382,7 +553,7 @@ The 1st person in the list does not have the profile page in address book.<br></
 <div class="sect3">
 <h4 id="justification-5"><a class="link" href="#justification-5">Justification</a></h4>
 <div class="paragraph">
-<p>{Justify the need for, and the current design (i.e. external behavior) of, the feature}</p>
+<p>Let users easily access social media and improve experience. Employers can also make use of this feature to quickly access candidates' CVs or profile pages.</p>
 </div>
 </div>
 <div class="sect3">
@@ -390,6 +561,95 @@ The 1st person in the list does not have the profile page in address book.<br></
 <hr>
 <div class="paragraph">
 <p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="add-profile-page-2"><a class="link" href="#add-profile-page-2">Add Profile Page</a></h4>
+<div class="paragraph">
+<p>The profile page parameter is facilitated by the class <code>ProfilePage</code>.<br>
+In order to add this parameter profile page, we make modifications to UI, Logic, Model and Storage components.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>UI Component:</code><br>
+<code>PersonCard</code>, which resides in UI component, frist creates a label for profile page parameter:<br></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>@FXML
+    private Label profile;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then <code>PersonCard</code> binds the label with the value of <code>ProfilePage</code> object. If the input value for <code>ProfilePage</code> object is null, it make the label dissapear from UI by setting its visibility to FALSE:<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> bindListeners(ReadOnlyPerson person) {
+    <span class="comment">//... binding other labels ...</span>
+
+    <span class="keyword">if</span> (!person.profilepageProperty().toString().equals(<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>)) {
+        profile.textProperty().bind(Bindings.convert(person.profilepageProperty()));
+        profile.setVisible(<span class="predefined-constant">true</span>);
+    } <span class="keyword">else</span> {
+        profile.setVisible(<span class="predefined-constant">false</span>);
+    }
+    <span class="comment">//... binding other labels ...</span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In order to make <code>select</code> command load a person&#8217;s <code>ProfilePage</code> object if it exists, we modify method <code>handlePersonPanelSelectionChangedEvent()</code> in <code>BrowserPanel</code> that is in charge of updating a person panel:<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"> <span class="directive">private</span> <span class="type">void</span> handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
+     <span class="comment">//...</span>
+     <span class="keyword">if</span> (person.getProfilePage().hasProfilePage()) {
+         loadProfilePage(person);
+     } <span class="keyword">else</span> {
+         loadPersonPage(person);
+     }
+ }</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Logic Component:</code><br>
+The prefix for profile page <code>pr/</code> is added to <code>CliSyntax</code>. Then the following files <code>AddCommand</code>, <code>EditCommand</code>, <code>AddCommandParser</code> and <code>EditCommandParser</code> are modified so that <code>add</code> and <code>edit</code> commands accept the new parameter profile page.<br>
+<code>AddCommandParser</code> does not check for profile page prefix <code>pr/</code> as this is an optional parameter.</p>
+</li>
+<li>
+<p><code>Model Component:</code><br>
+Class <code>ProfilePage</code> is used to store profile page property of class <code>Person</code>. Class <code>Person</code>, which resides in model component and implements <code>ReadOnlyPerson</code> interface, form a composition association with <code>ProfilePage</code> .<br>
+As profile page is an optional parameter, a <code>Person</code> can be linked to 0 or 1 <code>ProfilePage</code> object.<br>
+The relationship is illustrated in the following diagram:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/profilePage.png" alt="profilePage" width="300">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Storage Component:</code><br>
+<code>xmlAdaptedPerson</code> file is used to save information of a person in xml format.<br>
+The <code>required</code> parameter of <code>@XmlElement</code> element which stores profile page information is set to false to make this property optional:<br></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>@XmlElement(required = false)
+    private String profile = "";</pre>
+</div>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -402,10 +662,10 @@ The 1st person in the list does not have the profile page in address book.<br></
 <div class="ulist">
 <ul>
 <li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
+<p>Fix bugs due to merge conflicts for team (Pull requests <a href="https://github.com/CS2103AUG2017-W10-B4/main/pull/70" class="bare">https://github.com/CS2103AUG2017-W10-B4/main/pull/70</a>, <a href="https://github.com/CS2103AUG2017-W10-B4/main/pull/45" class="bare">https://github.com/CS2103AUG2017-W10-B4/main/pull/45</a>)</p>
 </li>
 <li>
-<p>Wrote additional tests to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
+<p>Write additional tests to increase coverage by 1.4% (Pull requests <a href="https://github.com/CS2103AUG2017-W10-B4/main/pull/89" class="bare">https://github.com/CS2103AUG2017-W10-B4/main/pull/89</a>, <a href="https://github.com/CS2103AUG2017-W10-B4/main/pull/99" class="bare">https://github.com/CS2103AUG2017-W10-B4/main/pull/99</a>)</p>
 </li>
 </ul>
 </div>
@@ -423,7 +683,7 @@ The 1st person in the list does not have the profile page in address book.<br></
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 01:00:27 +00:00
+Last updated 2017-11-13 01:15:36 +00:00
 </div>
 </div>
 </body>

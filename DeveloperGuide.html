@@ -54,10 +54,12 @@
 <li><a href="#undo-redo-mechanism">4.1. Undo/Redo Mechanism</a></li>
 <li><a href="#adding-a-parameter-in-add-command">4.2. Adding a Parameter in Add Command</a></li>
 <li><a href="#logging">4.3. Logging</a></li>
-<li><a href="#deletelist-deletes-a-list-of-persons-with-specified-indices">4.4. DeleteList: Deletes a List of Persons with Specified Indices</a></li>
-<li><a href="#findtag-command">4.5. FindTag Command</a></li>
-<li><a href="#coming-birthday-list">4.6. Coming Birthday List</a></li>
-<li><a href="#configuration">4.7. Configuration</a></li>
+<li><a href="#delete-command">4.4. Delete command</a></li>
+<li><a href="#phone-command">4.5. phone command</a></li>
+<li><a href="#findtag-command">4.6. FindTag Command</a></li>
+<li><a href="#coming-birthday-list">4.7. Coming Birthday List</a></li>
+<li><a href="#export-command">4.8. export Command</a></li>
+<li><a href="#configuration">4.9. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -854,6 +856,95 @@ To make sure that birthday can be stored in the xml format for future usage, xml
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="add-profile-page"><a class="link" href="#add-profile-page">4.2.2. Add Profile Page</a></h4>
+<div class="paragraph">
+<p>The profile page parameter is facilitated by the class <code>ProfilePage</code>.<br>
+In order to add this parameter profile page, we make modifications to UI, Logic, Model and Storage components.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>UI Component:</code><br>
+<code>PersonCard</code>, which resides in UI component, frist creates a label for profile page parameter:<br></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>@FXML
+    private Label profile;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then <code>PersonCard</code> binds the label with the value of <code>ProfilePage</code> object. If the input value for <code>ProfilePage</code> object is null, it make the label dissapear from UI by setting its visibility to FALSE:<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> bindListeners(ReadOnlyPerson person) {
+    <span class="comment">//... binding other labels ...</span>
+
+    <span class="keyword">if</span> (!person.profilepageProperty().toString().equals(<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>)) {
+        profile.textProperty().bind(Bindings.convert(person.profilepageProperty()));
+        profile.setVisible(<span class="predefined-constant">true</span>);
+    } <span class="keyword">else</span> {
+        profile.setVisible(<span class="predefined-constant">false</span>);
+    }
+    <span class="comment">//... binding other labels ...</span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In order to make <code>select</code> command load a person&#8217;s <code>ProfilePage</code> object if it exists, we modify method <code>handlePersonPanelSelectionChangedEvent()</code> in <code>BrowserPanel</code> that is in charge of updating a person panel:<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"> <span class="directive">private</span> <span class="type">void</span> handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
+     <span class="comment">//...</span>
+     <span class="keyword">if</span> (person.getProfilePage().hasProfilePage()) {
+         loadProfilePage(person);
+     } <span class="keyword">else</span> {
+         loadPersonPage(person);
+     }
+ }</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Logic Component:</code><br>
+The prefix for profile page <code>pr/</code> is added to <code>CliSyntax</code>. Then the following files <code>AddCommand</code>, <code>EditCommand</code>, <code>AddCommandParser</code> and <code>EditCommandParser</code> are modified so that <code>add</code> and <code>edit</code> commands accept the new parameter profile page.<br>
+<code>AddCommandParser</code> does not check for profile page prefix <code>pr/</code> as this is an optional parameter.</p>
+</li>
+<li>
+<p><code>Model Component:</code><br>
+Class <code>ProfilePage</code> is used to store profile page property of class <code>Person</code>. Class <code>Person</code>, which resides in model component and implements <code>ReadOnlyPerson</code> interface, form a composition association with <code>ProfilePage</code> .<br>
+As profile page is an optional parameter, a <code>Person</code> can be linked to 0 or 1 <code>ProfilePage</code> object.<br>
+The relationship is illustrated in the following diagram:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/profilePage.png" alt="profilePage" width="300">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Storage Component:</code><br>
+<code>xmlAdaptedPerson</code> file is used to save information of a person in xml format.<br>
+The <code>required</code> parameter of <code>@XmlElement</code> element which stores profile page information is set to false to make this property optional:<br></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>@XmlElement(required = false)
+    private String profile = "";</pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="logging"><a class="link" href="#logging">4.3. Logging</a></h3>
@@ -894,49 +985,12 @@ To make sure that birthday can be stored in the xml format for future usage, xml
 </div>
 </div>
 <div class="sect2">
-<h3 id="deletelist-deletes-a-list-of-persons-with-specified-indices"><a class="link" href="#deletelist-deletes-a-list-of-persons-with-specified-indices">4.4. DeleteList: Deletes a List of Persons with Specified Indices</a></h3>
+<h3 id="delete-command"><a class="link" href="#delete-command">4.4. Delete command</a></h3>
 <div class="paragraph">
-<p>'deleteList' command supports modifying the state of address book by deleting all persons whose indices are specified in the input. It inherits from 'UndoableCommand'.</p>
-</div>
-<div class="paragraph">
-<p>The implementation of 'deleteList' contains the logical part 'DeleteListCommand' and the parser 'DeleteListCommandParser'. They reside inside the package 'seedu.address.logic'.</p>
-</div>
-<div class="paragraph">
-<p>In 'DeleteListCommand', it stores the list of input indices in a list of 'Index' type: 'listTargetIndices'. 'listTargetIndices' is used later to retrieve all persons with specified indices and store them in 'listPersonsToDelete' (a list of 'ReadOnlyPerson' type). On execution, 'executeUndoableCommand()' will iterate through every person in 'listPersonsToDelete' and remove that person from address book.</p>
-</div>
-<div class="paragraph">
-<p>This 'DeleteListCommand' is implemented this way:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">DeleteListCommand</span> <span class="directive">extends</span> UndoableCommand {
-
-   <span class="comment">// ...</span>
-
-    <span class="directive">private</span> <span class="directive">final</span> <span class="predefined-type">List</span>&lt;Index&gt; listTargetIndices;
-
-    <span class="directive">public</span> DeleteListCommand(<span class="predefined-type">List</span>&lt;Index&gt; listTargetIndices) {
-        <span class="local-variable">this</span>.listTargetIndices = listTargetIndices;
-    }
-
-    <span class="annotation">@Override</span>
-    <span class="directive">public</span> CommandResult executeUndoableCommand() <span class="directive">throws</span> CommandException {
-        <span class="comment">// ...</span>
-        <span class="predefined-type">List</span>&lt;ReadOnlyPerson&gt; listPersonsToDelete= <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;ReadOnlyPerson&gt;();
-        <span class="keyword">for</span>(Index targetIndex: listTargetIndices) {
-            ReadOnlyPerson personToDelete = lastShownList.get(targetIndex.getZeroBased());
-            listPersonsToDelete.add(personToDelete);
-        }
-        <span class="comment">// ... deleteList logic ...</span>
-     }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then its parser 'DeleteListCommandParser' is implemented to parse the input string from user into the input type 'List&lt;Index&gt; listTargetIndices' for 'DeleteListCommand' to read and execute.</p>
-</div>
-<div class="paragraph">
-<p>The parser is implemented  this way:</p>
+<p><code>delete</code> command supports modifying the state of address book by deleting all persons whose indices are specified in the input. It inherits from <code>UndoableCommand</code>.
+The implementation of <code>delete</code> contains 2 classes: <code>DeleteCommand</code> and <code>DeleteCommandParser</code> inside the logic component.<br>
+<code>DeleteCommandParser</code>, the parser of <code>delete</code>, parses user&#8217;s input into the variable <code>input: List&lt;Index&gt;</code> that store a list of <code>Index</code>.
+<code>DeleteCommand</code>, which handles the logic of <code>delete</code> command, then iteratively remove any <code>Person</code> object with <code>Index</code> specified in <code>input</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -954,31 +1008,21 @@ To make sure that birthday can be stored in the xml format for future usage, xml
 </div>
 </div>
 <div class="paragraph">
-<p>And finally, we teach the 'AddressBookParser' to read this new command:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">AddressBookParser</span> {
-    <span class="comment">// ...</span>
-    <span class="directive">public</span> Command parseCommand(<span class="predefined-type">String</span> userInput) <span class="directive">throws</span> <span class="exception">ParseException</span> {
-        <span class="comment">// ... AddressBookParser logic ...</span>
-        <span class="directive">final</span> <span class="predefined-type">String</span> commandWord = matcher.group(<span class="string"><span class="delimiter">&quot;</span><span class="content">commandWord</span><span class="delimiter">&quot;</span></span>);
-        <span class="directive">final</span> <span class="predefined-type">String</span> arguments = matcher.group(<span class="string"><span class="delimiter">&quot;</span><span class="content">arguments</span><span class="delimiter">&quot;</span></span>);
-        <span class="keyword">switch</span> (commandWord) {
-        <span class="comment">// ... other commands ...</span>
-        <span class="keyword">case</span> DeleteListCommand.COMMAND_WORD:
-            <span class="keyword">return</span> <span class="keyword">new</span> DeleteListCommandParser().parse(arguments);
-        <span class="comment">// ... other commands ...</span>
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Whenever 'deleteList INDEX[MORE_INDICES]' is invoked, the input data 'INDEX[MORE_INDICES]' is stored in 'arguments', which is then passed to 'DeleteListCommandParser'. The parser will then parse 'arguments' into appropriate input data for 'DeleteListCommand' to execute the logic. The final state of address book is updated at the end of this execution.</p>
+<p>And finally, we add the <code>delete</code> command to the class 'AddressBookParser' so that <code>delete</code> command is recognized whenever invoked.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="findtag-command"><a class="link" href="#findtag-command">4.5. FindTag Command</a></h3>
+<h3 id="phone-command"><a class="link" href="#phone-command">4.5. phone command</a></h3>
+<div class="paragraph">
+<p>The <code>phone</code> command utilize the same implementation as the <code>Find</code> command for name. Instead of logic execute search via <code>Name</code> attribute of <code>Person</code>, the command search for the <code>phone</code> attribute.</p>
+</div>
+<div class="paragraph">
+<p><code>Name</code> and <code>Phone</code> API structure is roughly similar that they allow to extract value of the object. The search algorithm utilizes a class <code>NameContainsPhonesPredicate implements Predicate&lt;ReadOnlyPerson&gt;</code>
+which allows the algorithm to use Java <code>Predicate</code> class method.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="findtag-command"><a class="link" href="#findtag-command">4.6. FindTag Command</a></h3>
 <div class="paragraph">
 <p>The findTag command utilize the same implementation as the Find command for name. Instead of logic execute search via Name attribute of Person, the command search for the TagList attribute.</p>
 </div>
@@ -988,7 +1032,7 @@ which allows the algorithm to use Java <code>Predicate</code> class method.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="coming-birthday-list"><a class="link" href="#coming-birthday-list">4.6. Coming Birthday List</a></h3>
+<h3 id="coming-birthday-list"><a class="link" href="#coming-birthday-list">4.7. Coming Birthday List</a></h3>
 <div class="paragraph">
 <p>Basically, adding a list of upcoming birthday is only related to UI component. A new class should be implemented to hold the list.
 In this case, ComingBirthdayListPanel is implemented. ComingBirthdayListPanel should process all contacts in the person list
@@ -1031,7 +1075,16 @@ for the list in the main window UI. MainWindow.fxml should modified accordingly 
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">4.7. Configuration</a></h3>
+<h3 id="export-command"><a class="link" href="#export-command">4.8. export Command</a></h3>
+<div class="paragraph">
+<p><code>export</code> access the file <code>addressbook.xml</code> to retrieve each person and his/her properties and write it on the file at the specified input.
+Its implementation contains 2 classes: <code>ExportCommand</code> and <code>ExportCommandParser</code>.<br>
+The parser <code>ExportCommandParser</code> of <code>export</code> parses the file path input as a <code>String</code> to <code>ExportCommand</code>.<br>
+<code>ExportCommand</code>, which handles the logic of <code>export</code> command, then writes the exported file on the specified input file path.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuration"><a class="link" href="#configuration">4.9. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2347,7 +2400,7 @@ John wants a way to manage his contacts and a way to remind him tasks and respon
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 01:00:27 +00:00
+Last updated 2017-11-13 01:15:36 +00:00
 </div>
 </div>
 </body>
