@@ -56,7 +56,7 @@ public class MainApp extends Application {
     public void init() throws Exception {
         logger.info("=============================[ Initializing AddressBook ]===========================");
         super.init();
-
+    // demo purpose 17/02/18
         config = initConfig(getApplicationParameter("config"));
         config.setAppTitle("NeoXPro Manager");
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
